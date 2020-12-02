@@ -4,6 +4,8 @@ import { Navbar } from './components/common/Navbar'
 import { Route, Switch } from 'react-router-dom'
 import { Signup } from './components/pages/Signup'
 import { Signin } from './components/pages/Signin'
+import { Source } from './components/pages/Source'
+import { Archive } from './components/pages/Archive'
 
 function App() {
   return (
@@ -24,6 +26,14 @@ function App() {
         
         <Route path="/sign-in">
           <Signin />
+        </Route>
+        
+        <Route path="/source">
+          <Source />
+        </Route>
+
+        <Route path="/archive">
+          <Archive />
         </Route>
 
         <Route path="/">
