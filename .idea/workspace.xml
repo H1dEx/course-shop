@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6de061d8-c805-4ede-8802-b944b60cb77c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/common/BandComponent/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/Button/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/Entire/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Entire/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
-    </list>
+    <list default="true" id="6de061d8-c805-4ede-8802-b944b60cb77c" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,7 +33,7 @@
       <option name="presentableId" value="Default" />
       <updated>1608147519190</updated>
       <workItem from="1608147520613" duration="28000" />
-      <workItem from="1608147600821" duration="3516000" />
+      <workItem from="1608147600821" duration="4115000" />
     </task>
     <servers />
   </component>
