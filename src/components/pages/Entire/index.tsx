@@ -78,8 +78,6 @@ export function Entire() {
               Recently added courses
             </Subheader>
             <CourseItem />
-            <CourseItem />
-            <CourseItem />
             <ButtonWrapper>
               <Button>All courses</Button>
             </ButtonWrapper>

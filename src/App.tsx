@@ -9,15 +9,7 @@ import { Archive } from './components/pages/Archive'
 
 function App() {
   return (
-    <div
-      style={{
-        background: 'rgb(218, 216, 222, .2)',
-        position: 'absolute',
-        minHeight: '100vh',
-        width: '100%',
-        zIndex: -1,
-      }}
-    >
+    <>
       <Navbar />
       <Switch>
         <Route path="/sign-up">
@@ -40,7 +32,7 @@ function App() {
           <Entire />
         </Route>
       </Switch>
-    </div>
+    </>
   )
 }
 

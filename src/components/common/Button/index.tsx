@@ -12,7 +12,7 @@ interface IProps {
 
 export const Button: React.FC<IProps> = ({ children, outlined }) => {
   const classes = `${
-    outlined ? 'btn-outline-success' : 'btn-success '
-  } btn mt-4 pl-4 pr-4 pt-2 pb-2`
+    outlined ? 'btn-outline-success ' : 'btn-success '
+  } btn`
   return <ButtonStyle className={classes}>{children}</ButtonStyle>
 }
