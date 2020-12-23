@@ -6,6 +6,7 @@ import { Signup } from './components/pages/Signup'
 import { Signin } from './components/pages/Signin'
 import { Source } from './components/pages/Source'
 import { Archive } from './components/pages/Archive'
+import { Footer } from './components/common/Footer'
 
 function App() {
   return (
@@ -15,11 +16,11 @@ function App() {
         <Route path="/sign-up">
           <Signup />
         </Route>
-        
+
         <Route path="/sign-in">
           <Signin />
         </Route>
-        
+
         <Route path="/source">
           <Source />
         </Route>
@@ -32,6 +33,7 @@ function App() {
           <Entire />
         </Route>
       </Switch>
+      <Footer />
     </>
   )
 }

@@ -9,7 +9,7 @@ interface IContainerProps extends IGridProps {
 }
 
 export const Grid: React.FC<IContainerProps> = ({ children, fluid, classes = [] }) => {
-  const clazz = fluid? classes.concat('container-fluid') : classes.concat('container-fluid')
+  const clazz = fluid? classes.concat('container-fluid') : classes.concat('container')
   return <div className={clazz.join(' ')} >{children}</div>
 }
 

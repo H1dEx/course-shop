@@ -1,5 +1,5 @@
 import React from 'react'
-import { CourseItem } from '../../common/CourseItem'
+import { Course } from '../../common/CourseItem'
 import { MiniCard } from '../../common/MiniCard'
 import { Search } from '../../common/Search'
 import { BandComponent } from '../../common/BandComponent'
@@ -31,27 +31,27 @@ const categories = [
 export function Entire() {
   return (
     <>
-      <Grid classes={['pt-5']}>
+      <Grid classes={['mt-4']}>
         <Row>
-          <Col classes={['col-8', 'offset-2']}>
+          <Col classes={['col-md-8', 'offset-md-2', 'col-sm-12']}>
             <Header classes={['text-center', 'mt-4']}>
               Welcome to CourseShop
             </Header>
-            <p className="text-center mt-4">
+            <p className="text-center mt-4" style={{fontSize: 24, color: '#969494'}}>
               Resource of video programming lessons for developers. Take the
               knowledge of your profile from us, because we are the best, bruh.
               Really.
             </p>
           </Col>
-          <Col classes={['col-6', 'offset-3', 'mt-5']}>
+          <Col classes={['col-md-6', 'offset-md-3', 'mt-md-5', 'mt-3', 'col-8', 'offset-2']}>
             <Search />
           </Col>
         </Row>
       </Grid>
 
       <BandComponent>
-        <Grid>
-          <Subheader classes={['text-center', 'pt-2', 'pb-2']} light>
+        <Grid classes={['mt-4']}>
+          <Subheader classes={['text-center', 'pb-2']} light>
             Popular categories
           </Subheader>
           <Row classes={['justify-content-center', 'pr-5', 'pl-5']}>
@@ -65,7 +65,7 @@ export function Entire() {
             <MiniCard url={img} text="CSS" />
             <MiniCard url={img} text="CSS" />
           </Row>
-          <ButtonWrapper>
+          <ButtonWrapper className="pt-3">
             <Button>All categories</Button>
           </ButtonWrapper>
         </Grid>
@@ -77,8 +77,14 @@ export function Entire() {
             <Subheader classes={['text-center', 'mb-5']}>
               Recently added courses
             </Subheader>
-            <CourseItem />
-            <ButtonWrapper>
+            <Course>
+              <Course.Item />
+              <Course.Item />
+              <Course.Item />
+              <Course.Item />
+              <Course.Item />
+            </Course>
+            <ButtonWrapper className="pt-3">
               <Button>All courses</Button>
             </ButtonWrapper>
           </Col>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { CourseItem } from '../../common/CourseItem'
+import { Course } from '../../common/CourseItem'
 import { Search } from '../../common/Search'
 
 export function Archive() {
@@ -22,9 +22,11 @@ export function Archive() {
       </div>
       <div className="container pt-3">
         <h3 className="mb-5 mt-4">All courses</h3>
-        <CourseItem />
-        <CourseItem />
-        <CourseItem />
+        <Course>
+          <Course.Item />
+          <Course.Item />
+          <Course.Item />
+        </Course>
       </div>
     </>
   )
