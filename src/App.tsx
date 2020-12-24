@@ -10,6 +10,7 @@ import { Footer } from "./components/common/Footer";
 import styled from "styled-components";
 
 const ContentWrapper = styled.div`
+  position: relative;
   min-height: 100vh;
 `;
 
