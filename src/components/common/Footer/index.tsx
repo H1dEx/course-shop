@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { Grid} from '../Grid'
 import { FacebookIcon } from '../Icons/FacebookIcon'
+import { GithubIcon } from '../Icons/GithubIcon'
+import { OdnoklassnikiIcon } from '../Icons/Odnoklassniki'
 import { TwitterIcon } from '../Icons/TwitterIcon'
 import { VkIcon } from '../Icons/VkIcon'
 
@@ -10,40 +12,71 @@ const Wrapper = styled.div`
   padding: 60px 0;
   background-color: #353a40;
   color: #fff;
+  @media (max-width: 991px) {
+    padding: 30px 0;
+  }
 `
 
 const RowWrapper = styled.div`
   display: flex;
   justify-content: space-around;
+  @media (max-width: 991px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `
 
 const LabelText = styled.div`
   font-size: 23px;
   font-weight: 600;
+  @media (max-width: 991px) {
+    margin-bottom: 5px;
+  }
 `
 
 const DescrText = styled.div`
   font-size: 16px;
   font-weight: 400;
+  @media (max-width: 991px) {
+    font-size: 14px;
+  }
 `
 
 const InfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 30%;
+  @media (max-width: 991px) {
+    width: 70%;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  @media (max-width: 770px) {
+    width: 90%;
+  }
 `
 
 const LinksWrapper = styled.div`
   display: flex;
   justify-content: center;
   width: 30%;
+  @media (max-width: 991px) {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 `
 
 const LinksColumn = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
   padding-right: 20px;
+
+  @media (max-width: 991px) {
+    margin-right: 10px;
+    margin-left: 10px;
+    padding-right: 0;
+    align-items: center;
+  }
 `
 
 const LinksLabel = styled.p`
@@ -66,14 +99,21 @@ const SocialsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   max-width: 30%;
+  @media (max-width: 991px) {
+    max-width: 100%
+  }
 `
 
 const LinkIcon = styled(Link)`
   color: #fff;
-  margin-right: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
   text-decoration: null;
-  width: 32px;
-  height: 32px;
+  height: 35px;
+  svg {
+    width: 35px;
+    height: 35px;
+  }
 `
 
 export const Footer: React.FC = () => {
@@ -118,7 +158,13 @@ export const Footer: React.FC = () => {
               <FacebookIcon/>
             </LinkIcon>
             <LinkIcon to="/">
+              <GithubIcon/>
+            </LinkIcon>
+            <LinkIcon to="/">
               <TwitterIcon/>
+            </LinkIcon>
+            <LinkIcon to="/">
+              <OdnoklassnikiIcon/>
             </LinkIcon>
           </SocialsWrapper>
         </RowWrapper>
