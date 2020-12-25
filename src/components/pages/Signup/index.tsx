@@ -1,5 +1,7 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { Button } from "../../common/Button";
 
 const Wrapper = styled.div`
   padding-top: 15vh;
@@ -7,12 +9,19 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding-bottom: 10vh;
+`;
+
+const RegistredLink = styled.span`
+  font-size: 13px;
+  color: #949a9f;
+  margin-bottom: 20px;
 `
 
 export const Signup: React.FC = () => (
   <Wrapper>
     <h1 className="text-center">Please sign up to continue</h1>
-    <form className="mt-4">
+    <form className="mt-4 d-flex justify-content-center flex-column">
       <div className="form-group">
         <label htmlFor="exampleInputEmail1">Email address</label>
         <input
@@ -34,7 +43,7 @@ export const Signup: React.FC = () => (
           id="exampleInputPassword1"
         />
       </div>
-      <div className="form-group">
+      <div className="form-group" style={{marginBottom: 10}}>
         <label htmlFor="exampleInputPassword1">Confirm the password</label>
         <input
           type="password"
@@ -42,22 +51,15 @@ export const Signup: React.FC = () => (
           id="exampleInputPassword1"
         />
       </div>
-
-      <div className="form-group form-check">
-        <input
-          type="checkbox"
-          className="form-check-input"
-          id="exampleCheck1"
-        />
-        <label className="form-check-label" htmlFor="exampleCheck1">
-          Check me out
-        </label>
+        <RegistredLink className="text-center">
+          Already registred? <Link to="/">Sign in</Link>
+        </RegistredLink>
+      <div className="d-flex justify-content-center">
+        <Button outlined classes={["mr-3"]} color="secondary">
+          Cancel
+        </Button>
+        <Button color="primary">Submit</Button>
       </div>
-
-      <button className="btn btn-outline-primary">Cancel</button>
-      <button type="submit" className="btn btn-primary">
-        Submit
-      </button>
     </form>
   </Wrapper>
-)
+);

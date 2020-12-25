@@ -61,12 +61,12 @@ export function Entire() {
         </Row>
       </Grid>
 
-      <BandComponent>
-        <Grid classes={["pt-4", "pb-3"]}>
+      <BandComponent classes={["mt-5"]}>
+        <Grid classes={["pt-4", "pb-3"]} fluid>
           <Subheader classes={["text-center", "pb-2"]} light>
             Popular categories
           </Subheader>
-          <Row classes={["justify-content-center"]}>
+          <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', maxWidth: 1570, margin: '0px auto'}}>
             <MiniCard url={img} text="CSS" />
             <MiniCard url={img} text="CSS" />
             <MiniCard url={img} text="CSS" />
@@ -76,7 +76,7 @@ export function Entire() {
             <MiniCard url={img} text="CSS" />
             <MiniCard url={img} text="CSS" />
             <MiniCard url={img} text="CSS" />
-          </Row>
+          </div>
           <ButtonWrapper className="pt-3">
             <Button>All categories</Button>
           </ButtonWrapper>

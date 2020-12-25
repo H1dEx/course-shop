@@ -1,18 +1,20 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
+import { Button } from "../../common/Button";
 
 const Wrapper = styled.div`
-  padding-top: 17vh;
+  padding-top: 15vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-`
+  padding-bottom: 10vh;
+`;
 
 export const Signin: React.FC = () => (
   <Wrapper>
     <h1 className="text-center">Please sign in to continue</h1>
-    <form className="mt-4">
+    <form className="mt-4 d-flex justify-content-center flex-column">
       <div className="form-group">
         <label htmlFor="exampleInputEmail1">Email address</label>
         <input
@@ -45,9 +47,12 @@ export const Signin: React.FC = () => (
           Check me out
         </label>
       </div>
-      <button type="submit" className="btn btn-primary">
-        Submit
-      </button>
+      <div className="d-flex justify-content-center">
+        <Button outlined classes={["mr-3"]} color="secondary">
+          Cancel
+        </Button>
+        <Button color="primary">Submit</Button>
+      </div>
     </form>
   </Wrapper>
-)
+);
