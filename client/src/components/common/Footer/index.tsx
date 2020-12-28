@@ -1,12 +1,12 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-import { Grid} from '../Grid'
-import { FacebookIcon } from '../Icons/FacebookIcon'
-import { GithubIcon } from '../Icons/GithubIcon'
-import { OdnoklassnikiIcon } from '../Icons/Odnoklassniki'
-import { TwitterIcon } from '../Icons/TwitterIcon'
-import { VkIcon } from '../Icons/VkIcon'
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { Grid } from "../Grid";
+import { FacebookIcon } from "../Icons/FacebookIcon";
+import { GithubIcon } from "../Icons/GithubIcon";
+import { OdnoklassnikiIcon } from "../Icons/Odnoklassniki";
+import { TwitterIcon } from "../Icons/TwitterIcon";
+import { VkIcon } from "../Icons/VkIcon";
 
 const Wrapper = styled.div`
   padding: 60px 0;
@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   @media (max-width: 991px) {
     padding: 30px 0;
   }
-`
+`;
 
 const RowWrapper = styled.div`
   display: flex;
@@ -24,7 +24,7 @@ const RowWrapper = styled.div`
     flex-direction: column;
     align-items: center;
   }
-`
+`;
 
 const LabelText = styled.div`
   font-size: 23px;
@@ -32,7 +32,7 @@ const LabelText = styled.div`
   @media (max-width: 991px) {
     margin-bottom: 5px;
   }
-`
+`;
 
 const DescrText = styled.div`
   font-size: 16px;
@@ -40,7 +40,7 @@ const DescrText = styled.div`
   @media (max-width: 991px) {
     font-size: 14px;
   }
-`
+`;
 
 const InfoWrapper = styled.div`
   display: flex;
@@ -54,7 +54,7 @@ const InfoWrapper = styled.div`
   @media (max-width: 770px) {
     width: 90%;
   }
-`
+`;
 
 const LinksWrapper = styled.div`
   display: flex;
@@ -64,7 +64,7 @@ const LinksWrapper = styled.div`
     width: 100%;
     margin-bottom: 10px;
   }
-`
+`;
 
 const LinksColumn = styled.div`
   display: flex;
@@ -77,32 +77,32 @@ const LinksColumn = styled.div`
     padding-right: 0;
     align-items: center;
   }
-`
+`;
 
 const LinksLabel = styled.p`
   text-transform: uppercase;
   font-size: 14px;
   margin-bottom: 14px;
-`
+`;
 
 const LinksItem = styled(Link)<{ bold?: boolean }>`
   font-size: 14px;
   color: #fff;
   padding-bottom: 7px;
-  ${({ bold }) => bold && 'font-weight: 600'};
+  ${({ bold }) => bold && "font-weight: 600"};
   &:hover {
     color: #fff;
   }
-`
+`;
 
 const SocialsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   max-width: 30%;
   @media (max-width: 991px) {
-    max-width: 100%
+    max-width: 100%;
   }
-`
+`;
 
 const LinkIcon = styled(Link)`
   color: #fff;
@@ -114,12 +114,12 @@ const LinkIcon = styled(Link)`
     width: 35px;
     height: 35px;
   }
-`
+`;
 
 export const Footer: React.FC = () => {
   return (
     <Wrapper>
-      <Grid >
+      <Grid>
         <RowWrapper>
           <InfoWrapper>
             <LabelText>CourseShop</LabelText>
@@ -152,23 +152,23 @@ export const Footer: React.FC = () => {
           </LinksWrapper>
           <SocialsWrapper>
             <LinkIcon to="/">
-              <VkIcon/>
+              <VkIcon />
             </LinkIcon>
             <LinkIcon to="/">
-              <FacebookIcon/>
+              <FacebookIcon />
             </LinkIcon>
             <LinkIcon to="/">
-              <GithubIcon/>
+              <GithubIcon />
             </LinkIcon>
             <LinkIcon to="/">
-              <TwitterIcon/>
+              <TwitterIcon />
             </LinkIcon>
             <LinkIcon to="/">
-              <OdnoklassnikiIcon/>
+              <OdnoklassnikiIcon />
             </LinkIcon>
           </SocialsWrapper>
         </RowWrapper>
       </Grid>
     </Wrapper>
-  )
-}
+  );
+};

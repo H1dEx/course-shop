@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Entire } from "./components/pages/Entire";
 import { Navbar } from "./components/common/Navbar";
 import { Route, Switch } from "react-router-dom";
@@ -10,8 +10,8 @@ import { Footer } from "./components/common/Footer";
 import styled from "styled-components";
 
 const ContentWrapper = styled.div`
-  position: relative;
   min-height: 100vh;
+  box-sizing: border-box;
 `;
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
             <Signup />
           </Route>
 
-          <Route path="/sign-in">
+          <Route path="/sign-in"> 
             <Signin />
           </Route>
 
@@ -40,8 +40,8 @@ function App() {
             <Entire />
           </Route>
         </Switch>
+        <Footer />
       </ContentWrapper>
-      <Footer />
     </>
   );
 }

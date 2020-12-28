@@ -4,7 +4,8 @@ import styled from "styled-components";
 import { Button } from "../../common/Button";
 
 const Wrapper = styled.div`
-  padding-top: 15vh;
+  min-height: calc(100vh - 56px);
+  padding-top: 13vh;
   display: flex;
   align-items: center;
   justify-content: center;
