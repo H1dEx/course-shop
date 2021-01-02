@@ -12,14 +12,29 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  };
+  }
   User.init({
-    login: DataTypes.STRING,
-    password: DataTypes.STRING,
-    email: DataTypes.STRING
+    login: {
+    	type: DataTypes.STRING,
+    	allowNull: false
+	},
+    password: {
+		type: DataTypes.STRING,
+		allowNull: false
+	},
+    email: {
+		type: DataTypes.STRING,
+		allowNull: false
+	},
+  	fullname: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'User',
   });
+
+  User.login = function(loginUser) {
+  
+  }
+
   return User;
 };
