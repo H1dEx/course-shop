@@ -1,7 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {useState} from "react";
+import {Link} from "react-router-dom";
 import styled from "styled-components";
-import { Button } from "../../common/Button";
+import {Button} from "../../common/Button";
+import {Input} from "../../common/Input";
+import {useHttp} from "../../../hooks/http.hook";
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 56px);
@@ -13,54 +15,72 @@ const Wrapper = styled.div`
   padding-bottom: 10vh;
 `;
 
-const RegistredLink = styled.span`
+const RegisteredLink = styled.span`
   font-size: 13px;
   color: #949a9f;
   margin-bottom: 20px;
 `
 
-export const Signup: React.FC = () => (
-  <Wrapper>
-    <h1 className="text-center">Please sign up to continue</h1>
-    <form className="mt-4 d-flex justify-content-center flex-column">
-      <div className="form-group">
-        <label htmlFor="exampleInputEmail1">Email address</label>
-        <input
-          type="email"
-          className="form-control"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
-        />
-        <small id="emailHelp" className="form-text text-muted">
-          We'll never share your email with anyone else.
-        </small>
-      </div>
+export const Signup: React.FC = () => {
+    const {loading, error, request} = useHttp();
+    const [form, setForm] = useState({email: '', password: '', checkPassword: ''})
+    const changeHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
+        setForm({...form, [e.target.name]: e.target.value})
 
-      <div className="form-group">
-        <label htmlFor="exampleInputPassword1">Password</label>
-        <input
-          type="password"
-          className="form-control"
-          id="exampleInputPassword1"
-        />
-      </div>
-      <div className="form-group" style={{marginBottom: 10}}>
-        <label htmlFor="exampleInputPassword1">Confirm the password</label>
-        <input
-          type="password"
-          className="form-control"
-          id="exampleInputPassword1"
-        />
-      </div>
-        <RegistredLink className="text-center">
-          Already registred? <Link to="/">Sign in</Link>
-        </RegistredLink>
-      <div className="d-flex justify-content-center">
-        <Button outlined classes={["mr-3"]} color="secondary">
-          Cancel
-        </Button>
-        <Button color="primary">Submit</Button>
-      </div>
-    </form>
-  </Wrapper>
-);
+    }
+    const registerHandler = async () => {
+        try {
+            const data = await request('sign-up', 'POST', {...form});
+            console.log(data);
+        } catch (e) {
+
+        }
+    }
+    return (
+        <Wrapper>
+            <h1 className="text-center">Please sign up to continue</h1>
+            <form className="mt-4 d-flex justify-content-center flex-column" onChange={changeHandler}>
+                <div className="form-group">
+                    <label htmlFor="exampleInputEmail1">Email address</label>
+                    <Input
+                        name="email"
+                        type="email"
+                        id={["exampleInputEmail1"]}
+                        aria-describedby="emailHelp"
+                    />
+                    <small id="emailHelp" className="form-text text-muted">
+                        We'll never share your email with anyone else.
+                    </small>
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="inputPassword">Password</label>
+                    <Input
+                        name="password"
+                        type="password"
+                        id={["inputPassword"]}
+                    />
+                </div>
+                <div className="form-group" style={{marginBottom: 10}}>
+                    <label htmlFor="exampleInputPassword1">Confirm the password</label>
+                    <Input
+                        name="checkPassword"
+                        type="password"
+                        id={["exampleInputPassword1"]}
+                    />
+                </div>
+                <RegisteredLink className="text-center">
+                    Already registered? <Link to="/">Sign in</Link>
+                </RegisteredLink>
+                <div className="d-flex justify-content-center">
+                    <Button outlined classes={["mr-3"]} color="secondary">
+                        Cancel
+                    </Button>
+                    <Button color="primary" clickHandler={registerHandler}
+                            disabled={loading || error || form.password.trim().length < 3 || form.email.trim().length < 3 || form.checkPassword.trim().length < 3}
+                    >Submit</Button>
+                </div>
+            </form>
+        </Wrapper>
+    )
+}

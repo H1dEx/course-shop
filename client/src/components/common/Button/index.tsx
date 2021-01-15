@@ -8,32 +8,36 @@ const ButtonStyle = styled.button`
 `;
 
 interface IProps {
-  outlined?: boolean;
-  classes?: string[];
-  color?:
-    | "primary"
-    | "secondary"
-    | "success"
-    | "danger"
-    | "warning"
-    | "info"
-    | "light"
-    | "dark"
-    | "body"
-    | "muted"
-    | "white"
-    | "black";
+    outlined?: boolean;
+    classes?: string[];
+    disabled?: boolean;
+    color?:
+        | "primary"
+        | "secondary"
+        | "success"
+        | "danger"
+        | "warning"
+        | "info"
+        | "light"
+        | "dark"
+        | "body"
+        | "muted"
+        | "white"
+        | "black";
+    clickHandler?: () => void
 }
 
 export const Button: React.FC<IProps> = ({
-  children,
-  outlined,
-  classes = [],
-  color = "success",
-}) => {
-  const newClasses = `${
-    outlined ? `btn-outline-${color} ` : `btn-${color} `
-  } btn 
+                                             children,
+                                             outlined,
+                                             classes = [],
+                                             color = "success",
+                                             disabled,
+                                             clickHandler
+                                         }) => {
+    const newClasses = `${
+        outlined ? `btn-outline-${color} ` : `btn-${color} `
+    } btn 
   ${classes.join(" ")}`;
-  return <ButtonStyle className={newClasses}>{children}</ButtonStyle>;
+    return <ButtonStyle onClick={clickHandler} className={newClasses} disabled={disabled}>{children}</ButtonStyle>;
 };
