@@ -1,26 +1,25 @@
-const { body } = require('express-validator/check')
+const {body} = require('express-validator/check')
 
 const validators = {
-  userValidator: [
-    body('email').isEmail().normalizeEmail(),
-    body('password')
-      .not()
-      .isEmpty()
-      .trim()
-      .isLength({ min: 5 })
-      .withMessage('must be at least 5 chars long')
-      .matches(),
-  ],
-  loginValidator: [
-    body('email').isEmail().normalizeEmail(),
-    body('password')
-      .not()
-      .isEmpty()
-      .trim()
-      .isLength({ min: 5 })
-      .withMessage('must be at least 5 chars long')
-      .matches(),
-  ],
+	userValidator: [
+		body('email').isEmail().normalizeEmail(),
+		body('password')
+			.not()
+			.isEmpty()
+			.trim()
+			.isLength({min: 5})
+			.withMessage('must be at least 5 chars long')
+			.matches(),
+	],
+	loginValidator: [
+		body('email', 'Incorrect email').isEmail().normalizeEmail(),
+		body('password', 'Incorrect password')
+			.not()
+			.isEmpty()
+			.trim()
+			.isLength({min: 5})
+			.withMessage('Password must be at least 5 chars long'),
+	],
 }
 
 module.exports = validators

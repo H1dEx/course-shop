@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Wrapper = styled.div`
+const Wrapper = styled.a`
   box-sizing: border-box;
   width: 212px;
   height: 60px;
@@ -12,7 +12,13 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   color: #dad8de;
-  font-weight: 400px;
+  font-weight: 400;
+
+  &:hover {
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+  }
 `
 
 const CardImage = styled.img`
@@ -28,15 +34,16 @@ const CardDescr = styled.div`
 `
 
 interface IProps {
-  url: string
-  text: string
+    link: string
+    url: string
+    text: string
 }
 
-export const MiniCard: React.FC<IProps> = ({ url, text }) => {
-  return (
-    <Wrapper>
-      <CardImage src={url} alt="card image" />
-      <CardDescr className="text-center">{text}</CardDescr>
-    </Wrapper>
-  )
+export const MiniCard: React.FC<IProps> = ({url, text, link}) => {
+    return (
+        <Wrapper href={link}>
+            <CardImage src={url} alt="card image"/>
+            <CardDescr className="text-center">{text}</CardDescr>
+        </Wrapper>
+    )
 }

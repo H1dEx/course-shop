@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { AutorCard } from "../../common/AutorCard";
-import { Grid } from "../../common/Grid";
+import {Grid, Row} from "../../common/Grid";
 import { Search } from "../../common/Search";
 
 const CardWrapper = styled.div`
@@ -17,7 +17,7 @@ export function Source() {
   return (
     <>
       <Grid classes={["pt-4", "pb-4"]}>
-        <div className="row">
+        <Row>
           <div className="col-lg-8 offset-lg-2 col-12">
             <h1 className="text-center">Sources of courses</h1>
             <p className="text-center mt-4">
@@ -28,7 +28,7 @@ export function Source() {
           <div className="col-lg-6 offset-lg-3 col-10 offset-1">
             <Search />
           </div>
-        </div>
+        </Row>
       </Grid>
       <Grid classes={["pb-5"]} fluid>
         <CardWrapper>

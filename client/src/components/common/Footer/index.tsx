@@ -1,12 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import styled from "styled-components";
-import { Grid } from "../Grid";
-import { FacebookIcon } from "../Icons/FacebookIcon";
-import { GithubIcon } from "../Icons/GithubIcon";
-import { OdnoklassnikiIcon } from "../Icons/Odnoklassniki";
-import { TwitterIcon } from "../Icons/TwitterIcon";
-import { VkIcon } from "../Icons/VkIcon";
+import {Grid} from "../Grid";
+import {FacebookIcon} from "../Icons/FacebookIcon";
+import {GithubIcon} from "../Icons/GithubIcon";
+import {OdnoklassnikiIcon} from "../Icons/Odnoklassniki";
+import {TwitterIcon} from "../Icons/TwitterIcon";
+import {VkIcon} from "../Icons/VkIcon";
 
 const Wrapper = styled.div`
   padding: 60px 0;
@@ -85,11 +85,12 @@ const LinksLabel = styled.p`
   margin-bottom: 14px;
 `;
 
-const LinksItem = styled(Link)<{ bold?: boolean }>`
+const LinksItem = styled(Link)<{ bold?: boolean | undefined }>`
   font-size: 14px;
   color: #fff;
   padding-bottom: 7px;
-  ${({ bold }) => bold && "font-weight: 600"};
+  font-weight: ${({bold}) => bold ? 600 : "normal"};
+
   &:hover {
     color: #fff;
   }
@@ -108,8 +109,9 @@ const LinkIcon = styled(Link)`
   color: #fff;
   margin-left: 5px;
   margin-right: 5px;
-  text-decoration: null;
+  text-decoration: none;
   height: 35px;
+
   svg {
     width: 35px;
     height: 35px;
@@ -117,58 +119,58 @@ const LinkIcon = styled(Link)`
 `;
 
 export const Footer: React.FC = () => {
-  return (
-    <Wrapper>
-      <Grid>
-        <RowWrapper>
-          <InfoWrapper>
-            <LabelText>CourseShop</LabelText>
-            <DescrText>
-              Resource of video programming lessons for developers. Take the
-              knowledge of your profile from us, because we are the best, bruh.
-              Really.
-            </DescrText>
-          </InfoWrapper>
-          <LinksWrapper>
-            <LinksColumn>
-              <LinksLabel>Categories</LinksLabel>
-              <LinksItem to="/" bold>
-                All categories
-              </LinksItem>
-              <LinksItem to="/">React</LinksItem>
-              <LinksItem to="/">Angular</LinksItem>
-              <LinksItem to="/">Vue</LinksItem>
-            </LinksColumn>
-            <LinksColumn>
-              <LinksLabel>Sourses</LinksLabel>
-              <LinksItem to="/" bold>
-                All sources
-              </LinksItem>
-              <LinksItem to="/">Web4all</LinksItem>
-              <LinksItem to="/">FreeSchool</LinksItem>
-              <LinksItem to="/">Another author</LinksItem>
-              <LinksItem to="/">FreeBuff</LinksItem>
-            </LinksColumn>
-          </LinksWrapper>
-          <SocialsWrapper>
-            <LinkIcon to="/">
-              <VkIcon />
-            </LinkIcon>
-            <LinkIcon to="/">
-              <FacebookIcon />
-            </LinkIcon>
-            <LinkIcon to="/">
-              <GithubIcon />
-            </LinkIcon>
-            <LinkIcon to="/">
-              <TwitterIcon />
-            </LinkIcon>
-            <LinkIcon to="/">
-              <OdnoklassnikiIcon />
-            </LinkIcon>
-          </SocialsWrapper>
-        </RowWrapper>
-      </Grid>
-    </Wrapper>
-  );
+    return (
+        <Wrapper>
+            <Grid>
+                <RowWrapper>
+                    <InfoWrapper>
+                        <LabelText>CourseShop</LabelText>
+                        <DescrText>
+                            Resource of video programming lessons for developers. Take the
+                            knowledge of your profile from us, because we are the best, bruh.
+                            Really.
+                        </DescrText>
+                    </InfoWrapper>
+                    <LinksWrapper>
+                        <LinksColumn>
+                            <LinksLabel>Categories</LinksLabel>
+                            <LinksItem to="/" bold>
+                                All categories
+                            </LinksItem>
+                            <LinksItem to="/">React</LinksItem>
+                            <LinksItem to="/">Angular</LinksItem>
+                            <LinksItem to="/">Vue</LinksItem>
+                        </LinksColumn>
+                        <LinksColumn>
+                            <LinksLabel>Sourses</LinksLabel>
+                            <LinksItem to="/" bold>
+                                All sources
+                            </LinksItem>
+                            <LinksItem to="/">Web4all</LinksItem>
+                            <LinksItem to="/">FreeSchool</LinksItem>
+                            <LinksItem to="/">Another author</LinksItem>
+                            <LinksItem to="/">FreeBuff</LinksItem>
+                        </LinksColumn>
+                    </LinksWrapper>
+                    <SocialsWrapper>
+                        <LinkIcon to="/">
+                            <VkIcon/>
+                        </LinkIcon>
+                        <LinkIcon to="/">
+                            <FacebookIcon/>
+                        </LinkIcon>
+                        <LinkIcon to="/">
+                            <GithubIcon/>
+                        </LinkIcon>
+                        <LinkIcon to="/">
+                            <TwitterIcon/>
+                        </LinkIcon>
+                        <LinkIcon to="/">
+                            <OdnoklassnikiIcon/>
+                        </LinkIcon>
+                    </SocialsWrapper>
+                </RowWrapper>
+            </Grid>
+        </Wrapper>
+    );
 };

@@ -1,4 +1,4 @@
-import React, {FormEventHandler, useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import {Button} from "../../common/Button";
 import {Input} from "../../common/Input";
@@ -17,12 +17,16 @@ const Wrapper = styled.div`
 export const Signin: React.FC = () => {
     const {loading, error, request} = useHttp();
     const [form, setForm] = useState({email: '', password: ''})
+    useEffect(()=>{
+        if(error)
+            console.log(error)
+    }, [error]);
     const changeHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
         setForm({...form, [e.target.name]: e.target.value})
     }
     const registerHandler = async () => {
         try {
-          const data = await request('sign-in', 'POST', {...form});
+          const data = await request('/sign-in', 'POST', {...form});
           console.log(data);
         } catch (e) {
 

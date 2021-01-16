@@ -87,40 +87,44 @@ const Wrapper = styled.div`
 `
 
 
-export function Course ({children}: {children: React.ReactNode}): React.ReactElement { 
-  return <Wrapper>{children}</Wrapper>
+export function Course({children}: { children: React.ReactNode }): React.ReactElement {
+    return <Wrapper>{children}</Wrapper>
 }
 
 interface IProps {
-  course?: {
-    title: string
-    author: string
-    descr: string
-    lessons: number
-    totalTime: number
-    url: string
-  }
-  classes?: string[]
+    course?: {
+        title: string
+        author: string
+        descr: string
+        lessons: number
+        totalTime: number
+        url: string
+    }
+    classes?: string[]
 }
 
-const CourseItem: React.FC<IProps> = ({ classes, course }) => {
-  return (
-    <Card>
-      <ImageWrapper>
-        <Image src={logo} alt="..." />
-      </ImageWrapper>
-      <TextWrapper>
-        <Title>Course title</Title>
-          <Author>Author's name</Author>  
-        <Description>
-          Самый современный ресурс JS онлайн! Изучите Javascript, создав красивое портфолио проектов Всегда ставьте на Javascript! В течение многих лет лучшие рекрутеры в отрасли нанимали новых инженеров, основываясь исключительно на своих знаниях Javascript. Если вы хотите получить работу по программированию, это язык для изучения! Но изучение Javascript сложно! Есть причудливый синтаксис, странные шаблоны проектирования и миллиард ресурсов онлайн,...
-        </Description>
-        <p>
-          <small className="text-muted">Last updated 3 mins ago</small>
-        </p>
-      </TextWrapper>
-    </Card>
-  )
+const CourseItem: React.FC<IProps> = ({classes, course}) => {
+    return (
+        <Card>
+            <ImageWrapper>
+                <Image src={logo} alt="..."/>
+            </ImageWrapper>
+            <TextWrapper>
+                <Title>Course title</Title>
+                <Author>Author's name</Author>
+                <Description>
+                    Самый современный ресурс JS онлайн! Изучите Javascript, создав красивое портфолио проектов Всегда
+                    ставьте на Javascript! В течение многих лет лучшие рекрутеры в отрасли нанимали новых инженеров,
+                    основываясь исключительно на своих знаниях Javascript. Если вы хотите получить работу по
+                    программированию, это язык для изучения! Но изучение Javascript сложно! Есть причудливый синтаксис,
+                    странные шаблоны проектирования и миллиард ресурсов онлайн,...
+                </Description>
+                <p>
+                    <small className="text-muted">Last updated 3 mins ago</small>
+                </p>
+            </TextWrapper>
+        </Card>
+    )
 }
 
 Course.Item = CourseItem

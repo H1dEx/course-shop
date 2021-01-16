@@ -4,9 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "cd client && npm start",
+    "client": "cd client && npm start",
     "server": "nodemon --inspect app.js",
-    "dev": "run-p server start",
+    "start": "run-p server client",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
