@@ -1,40 +1,40 @@
 'use strict';
+const bcryptjs = require("bcryptjs");
 const {
-  Model
+	Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
-  }
-  User.init({
-    login: {
-    	type: DataTypes.STRING,
-    	allowNull: false
-	},
-    password: {
-		type: DataTypes.STRING,
-		allowNull: false
-	},
-    email: {
-		type: DataTypes.STRING,
-		allowNull: false
-	},
-  	fullname: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'User',
-  });
-
-  User.login = function(loginUser) {
-  
-  }
-
-  return User;
+	class User extends Model {
+		static associate(models) {
+			// define association here
+		}
+	}
+	
+	User.init({
+		password: {
+			type: DataTypes.STRING,
+			allowNull: false
+		},
+		email: {
+			type: DataTypes.STRING,
+			allowNull: false
+		},
+	}, {
+		sequelize,
+		modelName: 'User',
+	});
+	
+	User.login = function ({email, password}) {
+		User.findOne({where: {email}}).then((user) => {
+			if (!user) {
+				throw new Error("Incorrect email")
+			} else if (bcryptjs.hashSync(user.password) !== password) {
+				throw new Error("Incorrect password")
+			} else {
+				return user.email
+			}
+		})
+	}
+	
+	return User;
 };

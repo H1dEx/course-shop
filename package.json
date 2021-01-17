@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/H1dEx/course-shop#readme",
   "dependencies": {
+    "@types/react-alert": "^5.2.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -28,6 +29,7 @@
     "express-validator": "^6.9.0",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.2.5",
+    "react-alert": "^7.0.2",
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0"
   },

@@ -1,5 +1,4 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const {userValidator, loginValidator} = require('./services/validators')
 const UserController = require('./controllers/user.controller')
 
@@ -11,7 +10,7 @@ db.sequelize.sync({force: true}).then(console.log).catch(console.log)
 app.use(express.json({extended: true}));
 
 app.get("/", (req, res) => {
-	res.json({message: "Welcome to bezkoder application."});
+	res.json({message: "Welcome to application."});
 });
 
 app.post("/sign-up", userValidator, UserController.create)

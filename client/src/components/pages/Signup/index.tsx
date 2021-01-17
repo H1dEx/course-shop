@@ -7,10 +7,9 @@ import {useHttp} from "../../../hooks/http.hook";
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 56px);
-  padding-top: 13vh;
+  padding-top: 17vh;
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   padding-bottom: 10vh;
 `;
@@ -23,7 +22,7 @@ const RegisteredLink = styled.span`
 
 export const Signup: React.FC = () => {
     const {loading, error, request} = useHttp();
-    const [form, setForm] = useState({email: '', password: '', checkPassword: ''})
+    const [form, setForm] = useState({email: '', password: '', confirmPassword: ''})
     const changeHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
         setForm({...form, [e.target.name]: e.target.value})
 
@@ -64,7 +63,7 @@ export const Signup: React.FC = () => {
                 <div className="form-group" style={{marginBottom: 10}}>
                     <label htmlFor="exampleInputPassword1">Confirm the password</label>
                     <Input
-                        name="checkPassword"
+                        name="confirmPassword"
                         type="password"
                         id={["exampleInputPassword1"]}
                     />
@@ -77,7 +76,7 @@ export const Signup: React.FC = () => {
                         Cancel
                     </Button>
                     <Button color="primary" clickHandler={registerHandler}
-                            disabled={loading || error || form.password.trim().length < 3 || form.email.trim().length < 3 || form.checkPassword.trim().length < 3}
+                            disabled={loading || error || form.password.trim().length < 3 || form.email.trim().length < 3 || form.confirmPassword.trim().length < 3}
                     >Submit</Button>
                 </div>
             </form>

@@ -6,10 +6,9 @@ import {useHttp} from "../../../hooks/http.hook";
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 56px);
-  padding-top: 13vh;
+  padding-top: 17vh;
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   padding-bottom: 10vh;
 `;
