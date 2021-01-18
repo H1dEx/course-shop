@@ -5,7 +5,7 @@ const UserController = require('./controllers/user.controller')
 const app = express();
 
 const db = require("./models");
-db.sequelize.sync({force: true}).then(console.log).catch(console.log)
+db.sequelize.sync().then(console.log).catch(console.log)
 
 app.use(express.json({extended: true}));
 

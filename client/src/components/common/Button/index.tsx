@@ -24,7 +24,7 @@ interface IProps {
         | "muted"
         | "white"
         | "black";
-    clickHandler?: () => void
+    clickHandler?: (e: any) => void
 }
 
 export const Button: React.FC<IProps> = ({

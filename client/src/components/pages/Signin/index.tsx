@@ -1,8 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import styled from "styled-components";
 import {Button} from "../../common/Button";
 import {Input} from "../../common/Input";
 import {useHttp} from "../../../hooks/http.hook";
+import {toast} from "react-toastify";
+import {AuthContext} from "../../context/AuthContext";
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 56px);
@@ -14,21 +16,23 @@ const Wrapper = styled.div`
 `;
 
 export const Signin: React.FC = () => {
-    const {loading, error, request} = useHttp();
+    const auth = useContext(AuthContext)
+    const {loading, error, request, clearError} = useHttp();
     const [form, setForm] = useState({email: '', password: ''})
-    useEffect(()=>{
-        if(error)
+    useEffect(() => {
+        if (error)
             console.log(error)
     }, [error]);
     const changeHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
+        clearError()
         setForm({...form, [e.target.name]: e.target.value})
     }
     const registerHandler = async () => {
         try {
-          const data = await request('/sign-in', 'POST', {...form});
-          console.log(data);
+            const data = await request('/sign-in', 'POST', {...form});
+            auth.login(data.token, data.userId)
         } catch (e) {
-
+            toast(e.errors.map((el: { msg: string }) => el.msg).join(' '), {type: "error"});
         }
     }
     return (

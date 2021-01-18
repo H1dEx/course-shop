@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {Button} from "../../common/Button";
 import {Input} from "../../common/Input";
 import {useHttp} from "../../../hooks/http.hook";
+import {toast} from "react-toastify";
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 56px);
@@ -21,18 +22,19 @@ const RegisteredLink = styled.span`
 `
 
 export const Signup: React.FC = () => {
-    const {loading, error, request} = useHttp();
-    const [form, setForm] = useState({email: '', password: '', confirmPassword: ''})
+    const {loading, error, request, clearError} = useHttp();
+    const [form, setForm] = useState({email: '', password: '', confirmPassword: ''});
     const changeHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
+        clearError()
         setForm({...form, [e.target.name]: e.target.value})
-
     }
-    const registerHandler = async () => {
+    const registerHandler = async (e: any) => {
+        e.preventDefault()
         try {
             const data = await request('sign-up', 'POST', {...form});
             console.log(data);
         } catch (e) {
-
+            toast(e.errors.map((el: { msg: string }) => el.msg).join(' '), {type: "error"});
         }
     }
     return (
