@@ -83,14 +83,14 @@ export function Navbar() {
                         </>)
                         : (<>
                             <Link
-                                to="/sign-up"
+                                to="/api/auth/sign-up"
                                 className="btn btn-outline-warning my-2 my-sm-0 mr-2"
                                 type="submit"
                             >
                                 SIGN UP
                             </Link>
                             <Link
-                                to="/sign-in"
+                                to="/api/auth/sign-in"
                                 className="btn btn-dark my-2 my-sm-0"
                                 type="submit"
                             >

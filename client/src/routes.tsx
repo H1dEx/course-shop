@@ -26,11 +26,11 @@ export const useRoutes = (isAuth: boolean) => isAuth
     : (
         <Switch>
 
-            <Route path="/sign-up">
+            <Route path="/api/auth/sign-up">
                 <Signup/>
             </Route>
 
-            <Route path="/sign-in">
+            <Route path="/api/auth/sign-in">
                 <Signin/>
             </Route>
 

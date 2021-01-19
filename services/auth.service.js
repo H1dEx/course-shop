@@ -10,20 +10,19 @@ function createToken(userFromDb) {
 }
 
 function verifyToken(req, res, next) {
-    let token
-    if (req.headers.authorization) {
-        token = req.headers.authorization
-        token = token.replace(/bearer|jwt\s*/i, '')
-        jwt.verify(token, config.secret, (error, decodedToken) => {
-            if (error) {
-                res.status(401).json({error: 'Failed to authenticate token'})
-                return
-            }
+    try {
+        let token
+        if (req.headers.authorization) {
+            token = req.headers.authorization
+            token = token.split(' ')[1]
+            const decodedToken = jwt.verify(token, config.secret)
             req.userId = decodedToken.id
             next()
-        })
-    } else {
-        res.status(401).json({error: 'No token provided'})
+        } else {
+            throw new Error('No authorized')
+        }
+    } catch (e) {
+        res.status(401).json({error: 'No authorized'})
     }
 }
 

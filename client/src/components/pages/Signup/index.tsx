@@ -32,7 +32,6 @@ export const Signup: React.FC = () => {
         e.preventDefault()
         try {
             const data = await request('sign-up', 'POST', {...form});
-            console.log(data);
         } catch (e) {
             toast(e.errors.map((el: { msg: string }) => el.msg).join(' '), {type: "error"});
         }
@@ -40,7 +39,8 @@ export const Signup: React.FC = () => {
     return (
         <Wrapper>
             <h1 className="text-center">Please sign up to continue</h1>
-            <form className="mt-4 d-flex justify-content-center flex-column" onChange={changeHandler}>
+            <form className="mt-4 d-flex justify-content-center flex-column" onChange={changeHandler}
+                  onSubmit={registerHandler}>
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Email address</label>
                     <Input

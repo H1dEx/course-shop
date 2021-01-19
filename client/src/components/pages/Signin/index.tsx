@@ -29,16 +29,21 @@ export const Signin: React.FC = () => {
     }
     const registerHandler = async () => {
         try {
-            const data = await request('/sign-in', 'POST', {...form});
+            const data = await request('sign-in', 'POST', {...form});
             auth.login(data.token, data.userId)
         } catch (e) {
-            toast(e.errors.map((el: { msg: string }) => el.msg).join(' '), {type: "error"});
+            if (Array.isArray(e.errors)) {
+                toast(e.errors.map((el: { msg: string }) => el.msg).join(' '), {type: "error"});
+            } else {
+                toast(e, {type: "error"});
+            }
         }
     }
     return (
         <Wrapper>
             <h1 className="text-center">Please sign in to continue</h1>
-            <form className="mt-4 d-flex justify-content-center flex-column" onChange={changeHandler}>
+            <form className="mt-4 d-flex justify-content-center flex-column" onChange={changeHandler}
+                  onSubmit={registerHandler}>
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Email address</label>
                     <Input
