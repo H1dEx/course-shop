@@ -5,6 +5,7 @@ import {Input} from "../../common/Input";
 import {useHttp} from "../../../hooks/http.hook";
 import {toast} from "react-toastify";
 import {AuthContext} from "../../context/AuthContext";
+import {useHistory} from "react-router-dom";
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 56px);
@@ -16,6 +17,7 @@ const Wrapper = styled.div`
 `;
 
 export const Signin: React.FC = () => {
+    const history = useHistory()
     const auth = useContext(AuthContext)
     const {loading, error, request, clearError} = useHttp();
     const [form, setForm] = useState({email: '', password: ''})
@@ -31,6 +33,7 @@ export const Signin: React.FC = () => {
         try {
             const data = await request('sign-in', 'POST', {...form});
             auth.login(data.token, data.userId)
+            history.push('/')
         } catch (e) {
             if (Array.isArray(e.errors)) {
                 toast(e.errors.map((el: { msg: string }) => el.msg).join(' '), {type: "error"});

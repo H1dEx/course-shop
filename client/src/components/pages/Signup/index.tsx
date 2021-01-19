@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import styled from "styled-components";
 import {Button} from "../../common/Button";
 import {Input} from "../../common/Input";
@@ -22,6 +22,7 @@ const RegisteredLink = styled.span`
 `
 
 export const Signup: React.FC = () => {
+    const history = useHistory()
     const {loading, error, request, clearError} = useHttp();
     const [form, setForm] = useState({email: '', password: '', confirmPassword: ''});
     const changeHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
@@ -32,6 +33,8 @@ export const Signup: React.FC = () => {
         e.preventDefault()
         try {
             const data = await request('sign-up', 'POST', {...form});
+            toast('Registration was successful', {type: "success"});
+            history.push('sign-in')
         } catch (e) {
             toast(e.errors.map((el: { msg: string }) => el.msg).join(' '), {type: "error"});
         }

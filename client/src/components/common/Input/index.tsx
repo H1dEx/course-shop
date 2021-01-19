@@ -8,6 +8,7 @@ type TProps = {
     placeholder?: string
     name: string
     disabled?: boolean
+    value?: string
 }
 
 export function Input({
@@ -17,10 +18,11 @@ export function Input({
                           id = [],
                           placeholder = "",
                           name,
-                          disabled = false
+                          disabled = false,
+                          value = undefined
                       }: TProps) {
     return (
         <input type={type} className={`form-control ${classes.join(' ')}`} id={id.join(' ')} placeholder={placeholder}
-               name={name} aria-describedby={ariaDescribedby} disabled={disabled}/>
+               name={name} aria-describedby={ariaDescribedby} disabled={disabled} value={value}/>
     )
 }

@@ -6,7 +6,8 @@ const db = require("./models");
 db.sequelize.sync().then(console.log).catch(console.log)
 
 app.use(express.json({extended: true}))
-app.use('/api/auth', require('./routes/auth.routes'))
+app.use('/api/auth', require('./routes/auth.routes'));
+app.use('/profile', require('./routes/profile.routes'));
 
 app.get("/", (req, res) => {
     res.json({message: "Welcome to application."});

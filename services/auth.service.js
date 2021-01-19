@@ -13,8 +13,7 @@ function verifyToken(req, res, next) {
     try {
         let token
         if (req.headers.authorization) {
-            token = req.headers.authorization
-            token = token.split(' ')[1]
+			token = req.headers.authorization
             const decodedToken = jwt.verify(token, config.secret)
             req.userId = decodedToken.id
             next()
