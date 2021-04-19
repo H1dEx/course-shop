@@ -46,7 +46,7 @@ export const Signin: React.FC = () => {
         <Wrapper>
             <h1 className="text-center">Please sign in to continue</h1>
             <form className="mt-4 d-flex justify-content-center flex-column" onChange={changeHandler}
-                  onSubmit={registerHandler}>
+                  onSubmit={registerHandler} method="post">
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Email address</label>
                     <Input

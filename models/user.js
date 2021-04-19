@@ -6,7 +6,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
 	class User extends Model {
 		static associate(models) {
-			// define association here
+			User.hasMany(models.Comment, {foreignKey: 'id'})
 		}
 	}
 	
@@ -39,7 +39,6 @@ module.exports = (sequelize, DataTypes) => {
 				const result = bcryptjs.compareSync(password, user.password);
 				if (!result)
 					throw new Error("Incorrect password");
-				console.log(user)
 				return user
 			})
 	}

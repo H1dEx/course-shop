@@ -1,12 +1,12 @@
-import React from "react";
-import {Navbar} from "./components/common/Navbar";
-import {Footer} from "./components/common/Footer";
-import {ToastContainer} from 'react-toastify';
-import styled from "styled-components";
-import 'react-toastify/dist/ReactToastify.css';
-import {useAuth} from "./hooks/auth.hook";
-import {AuthContext} from "./components/context/AuthContext";
-import {useRoutes} from "./routes";
+import React from "react"
+import {Navbar} from "./components/common/Navbar"
+import {Footer} from "./components/common/Footer"
+import {ToastContainer} from 'react-toastify'
+import styled from "styled-components"
+import 'react-toastify/dist/ReactToastify.css'
+import {useAuth} from "./hooks/auth.hook"
+import {AuthContext} from "./components/context/AuthContext"
+import {useRoutes} from "./routes"
 
 const ContentWrapper = styled.div`
   min-height: 100vh;

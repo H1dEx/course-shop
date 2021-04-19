@@ -1,13 +1,14 @@
-import React from "react";
-import {Course} from "../../common/CourseItem";
-import {MiniCard} from "../../common/MiniCard";
-import {Search} from "../../common/Search";
-import {BandComponent} from "../../common/BandComponent";
-import {Button} from "../../common/Button";
-import {Col, Grid, Row} from "../../common/Grid";
-import img from "../../../assets/icons/css.png";
-import styled from "styled-components";
-import {Header, Subheader} from "../../common/Header";
+import React from "react"
+import {Course} from "../../common/CourseItem"
+import {MiniCard} from "../../common/MiniCard"
+import {Search} from "../../common/Search"
+import {BandComponent} from "../../common/BandComponent"
+import {Button} from "../../common/Button"
+import {Col, Grid, Row} from "../../common/Grid"
+import img from "../../../assets/icons/css.png"
+import styled from "styled-components"
+import {Header, Subheader} from "../../common/Header"
+import {Link} from "react-router-dom"
 
 const ButtonWrapper = styled.div`
   text-align: center;
@@ -16,7 +17,7 @@ const ButtonWrapper = styled.div`
     height: 40px;
     width: 270px;
   }
-`;
+`
 
 const categories = [
     {name: "CSS", icon: "css.png"},
@@ -27,7 +28,7 @@ const categories = [
     {name: "Python", icon: "python.png"},
     {name: "TypeScript", icon: "typescript.png"},
     {name: "Other", icon: "drugoe.png"},
-];
+]
 
 export function Entire() {
     return (
@@ -86,7 +87,7 @@ export function Entire() {
                         <MiniCard url={img} text="CSS" link="#"/>
                     </div>
                     <ButtonWrapper className="pt-3">
-                        <Button>All categories</Button>
+                        <Link to="/categories"><Button>All categories</Button></Link>
                     </ButtonWrapper>
                 </Grid>
             </BandComponent>
@@ -105,7 +106,9 @@ export function Entire() {
                             <Course.Item/>
                         </Course>
                         <ButtonWrapper className="pt-3">
-                            <Button>All courses</Button>
+                            <Link to='/archive'>
+                                <Button>All courses</Button>
+                            </Link>
                         </ButtonWrapper>
                     </Col>
                 </Row>
