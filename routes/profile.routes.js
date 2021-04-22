@@ -1,6 +1,6 @@
-const {Router} = require('express');
-const UserController = require('../controllers/user.controller');
-const {verifyToken} = require("../services/auth.service");
+const {Router} = require('express')
+const UserController = require('../controllers/user.controller')
+const {verifyToken} = require("../services/auth.service")
 
 const router = Router()
 

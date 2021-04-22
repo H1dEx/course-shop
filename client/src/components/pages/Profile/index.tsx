@@ -11,7 +11,7 @@ import {AuthContext} from "../../context/AuthContext";
 import {Spinner} from "../../common/Spinner";
 import {toast} from "react-toastify";
 
-const LoadingWrapper = styled.div`
+export const LoadingWrapper = styled.div`
   height: 80vh;
   display: flex;
   justify-content: center;
