@@ -12,6 +12,7 @@ import {Link} from "react-router-dom"
 import {useHttp} from "../../../hooks/http.hook";
 import {Spinner} from "../../common/Spinner";
 import {LoadingWrapper} from "../Profile";
+import {ITag} from "../../../../types";
 
 const ButtonWrapper = styled.div`
   text-align: center;
@@ -34,16 +35,17 @@ const categories = [
 ]
 
 export function Entire() {
-    const [tags, setTags] = useState([])
-    const {loading, request} = useHttp()
+    const [tags, setTags] = useState<ITag[]>([])
+    const [courses, setCourses] = useState<any>([])
+    const {loading, request} = useHttp<ITag[]>()
     useEffect(() => {
         const makeRequest = async () => {
-            const res = await request('/categories')
-            setTags(res)
+            const [courses, tags] = await Promise.all([request('/courses?page=1&count=10'), request('/categories?page=1&count=10')])
+            setTags(tags);
+            setCourses(courses);
         }
-        makeRequest();
+        makeRequest()
     }, [])
-    console.log(tags);
     return loading
         ? <LoadingWrapper><Spinner/></LoadingWrapper>
         : (
@@ -90,16 +92,9 @@ export function Entire() {
                             maxWidth: 1570,
                             margin: '0px auto'
                         }}>
-                            <MiniCard url={img} text="CSS" link="#"/>
-                            <MiniCard url={img} text="CSS" link="#"/>
-                            <MiniCard url={img} text="CSS" link="#"/>
-                            <MiniCard url={img} text="CSS" link="#"/>
-                            <MiniCard url={img} text="CSS" link="#"/>
-                            <MiniCard url={img} text="CSS" link="#"/>
-                            <MiniCard url={img} text="CSS" link="#"/>
-                            <MiniCard url={img} text="CSS" link="#"/>
-                            <MiniCard url={img} text="CSS" link="#"/>
-                            <MiniCard url={img} text="CSS" link="#"/>
+                            {
+                                tags.map(tag => <MiniCard url={img} text={tag.tag} link="#"/>
+                                )}
                         </div>
                         <ButtonWrapper className="pt-3">
                             <Link to="/categories"><Button>All categories</Button></Link>

@@ -5,19 +5,16 @@ module.exports = {
         await queryInterface.bulkInsert('Courses', [{
             coursename: 'FIRST',
             description: 'test',
-            price: 99,
             createdAt: new Date(),
             updatedAt: new Date()
         },{
             coursename: 'SEC',
             description: 'test',
-            price: 99,
             createdAt: new Date(),
             updatedAt: new Date()
         },{
             coursename: 'THD',
             description: 'test',
-            price: 99,
             createdAt: new Date(),
             updatedAt: new Date()
         },])

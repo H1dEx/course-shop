@@ -85,16 +85,19 @@ const LinksLabel = styled.p`
   margin-bottom: 14px;
 `;
 
-const LinksItem = styled(Link)<{ bold?: boolean | undefined }>`
+const LinksItem = styled(Link)`
   font-size: 14px;
   color: #fff;
   padding-bottom: 7px;
-  font-weight: ${({bold}) => bold ? 600 : "normal"};
 
   &:hover {
     color: #fff;
   }
 `;
+
+const BoldLinksItem = styled(LinksItem)`
+  font-weight: 600;
+`
 
 const SocialsWrapper = styled.div`
   display: flex;
@@ -134,18 +137,18 @@ export const Footer: React.FC = () => {
                     <LinksWrapper>
                         <LinksColumn>
                             <LinksLabel>Categories</LinksLabel>
-                            <LinksItem to="/" bold>
+                            <BoldLinksItem to="/">
                                 All categories
-                            </LinksItem>
+                            </BoldLinksItem>
                             <LinksItem to="/">React</LinksItem>
                             <LinksItem to="/">Angular</LinksItem>
                             <LinksItem to="/">Vue</LinksItem>
                         </LinksColumn>
                         <LinksColumn>
                             <LinksLabel>Sourses</LinksLabel>
-                            <LinksItem to="/" bold>
+                            <BoldLinksItem to="/">
                                 All sources
-                            </LinksItem>
+                            </BoldLinksItem>
                             <LinksItem to="/">Web4all</LinksItem>
                             <LinksItem to="/">FreeSchool</LinksItem>
                             <LinksItem to="/">Another author</LinksItem>

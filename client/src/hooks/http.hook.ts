@@ -1,10 +1,10 @@
 import {useState, useCallback} from "react";
 
-export const useHttp = () => {
+export const useHttp = <T>() => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
 
-    const request = useCallback(async (url, method = 'GET', body = null, headers = {}) => {
+    const request = useCallback(async (url, method = 'GET', body = null, headers = {}): Promise<T> => {
         setLoading(true);
         try {
             if (body) {

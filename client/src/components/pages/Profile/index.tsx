@@ -40,7 +40,7 @@ export const Profile = () => {
     const {token} = useContext(AuthContext)
     const [formData, setFormData] = useState({email: '', nickname: '', gender: ''});
     const [isLoading, setLoading] = useState(true);
-    const {loading, request} = useHttp()
+    const {loading, request} = useHttp<any>()
     useEffect(() => {
         const makeRequest = async () => {
             const data = await request('/profile', 'GET', null, {authorization: token});

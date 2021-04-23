@@ -19,9 +19,13 @@ module.exports = (sequelize, DataTypes) => {
         }
     )
 
-    Category.getAll = () => {
-        console.log('STEP INTO')
-        return Category.findAll()
+    Category.getAll = (page, limit) => {
+        return Category.findAll({limit, offset: (page - 1) * limit})
+            .then(category => {
+                if (!category)
+                    throw new Error("Not found")
+                return category
+            })
     }
 
     return Category

@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 export const Signin: React.FC = () => {
     const history = useHistory()
     const auth = useContext(AuthContext)
-    const {loading, error, request, clearError} = useHttp();
+    const {loading, error, request, clearError} = useHttp<any>();
     const [form, setForm] = useState({email: '', password: ''})
     useEffect(() => {
         if (error)

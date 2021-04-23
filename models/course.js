@@ -27,18 +27,14 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        price: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
         imagesource: DataTypes.STRING
     }, {
         sequelize,
         modelName: 'Course',
     })
 
-    Course.getAll = () => {
-        return Course.findAll().then(courses => {
+    Course.getAll = (page, limit) => {
+        return Course.findAll({limit, offset: (page - 1) * limit}).then(courses => {
             if (!courses)
                 throw new Error("Not found");
             return courses

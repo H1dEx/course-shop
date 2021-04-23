@@ -1,7 +1,8 @@
 const {Course} = require('../models')
 
 function getAllCourses(req, res) {
-    return Course.getAll()
+    const {page = 1, count} = req.query;
+    return Course.getAll(+page, +count)
         .then(courses => res.json(courses))
         .catch(e => res.status(e.statusCode || 400).json({errors: [{msg: e.message}]}))
 }
