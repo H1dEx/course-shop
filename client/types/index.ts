@@ -5,10 +5,6 @@ export interface ITag {
     updatedAt: string
 }
 
-export interface ICategory {
-
-}
-
 export interface ICourse {
     id: number
     description: string

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import logo from '../../../assets/logo/typescript-course.jpg'
+import {ICourse} from "../../../../types";
 
 const Card = styled.div`
   box-sizing: border-box;
@@ -92,14 +93,7 @@ export function Course({children}: { children: React.ReactNode }): React.ReactEl
 }
 
 interface IProps {
-    course?: {
-        title: string
-        author: string
-        descr: string
-        lessons: number
-        totalTime: number
-        url: string
-    }
+    course: ICourse
     classes?: string[]
 }
 
@@ -107,12 +101,13 @@ const CourseItem: React.FC<IProps> = ({classes, course}) => {
     return (
         <Card>
             <ImageWrapper>
-                <Image src={logo} alt="..."/>
+                {course.imagesource ? <Image src={course.imagesource} alt="..."/> : <Image src={logo} alt="..."/>}
             </ImageWrapper>
             <TextWrapper>
-                <Title>Course title</Title>
+                <Title>{course.coursename}</Title>
                 <Author>Author's name</Author>
                 <Description>
+                    {course.description}
                     Самый современный ресурс JS онлайн! Изучите Javascript, создав красивое портфолио проектов Всегда
                     ставьте на Javascript! В течение многих лет лучшие рекрутеры в отрасли нанимали новых инженеров,
                     основываясь исключительно на своих знаниях Javascript. Если вы хотите получить работу по
@@ -120,7 +115,7 @@ const CourseItem: React.FC<IProps> = ({classes, course}) => {
                     странные шаблоны проектирования и миллиард ресурсов онлайн,...
                 </Description>
                 <p>
-                    <small className="text-muted">Last updated 3 mins ago</small>
+                    <small className="text-muted">Last update: {course.updatedAt}</small>
                 </p>
             </TextWrapper>
         </Card>

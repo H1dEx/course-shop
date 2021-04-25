@@ -6,13 +6,29 @@ import {Source} from "./components/pages/Source";
 import {Archive} from "./components/pages/Archive";
 import {Entire} from "./components/pages/Entire";
 import {Profile} from "./components/pages/Profile";
+import {Categories} from "./components/pages/Categories";
 
 const AuthorizedRoutes = () => (
     <Switch>
         <Route path="/profile">
             <Profile/>
         </Route>
-        <Route path="/my-courses">Wow</Route>
+
+        <Route path="/source">
+            <Source/>
+        </Route>
+
+        <Route path="/categories">
+            <Categories/>
+        </Route>
+
+        <Route path="/archive">
+            <Archive/>
+        </Route>
+
+        <Route path="/">
+            <Entire/>
+        </Route>
     </Switch>
 )
 
@@ -25,13 +41,13 @@ const UnauthorizedRoutes = () => (
         <Route path="/api/auth/sign-in">
             <Signin/>
         </Route>
-    </Switch>
-)
 
-const CommonRoutes = () => (
-    <Switch>
         <Route path="/source">
             <Source/>
+        </Route>
+
+        <Route path="/categories">
+            <Categories/>
         </Route>
 
         <Route path="/archive">
@@ -50,7 +66,6 @@ export const useRoutes = (isAuth: boolean) => (
             ? <AuthorizedRoutes/>
             : <UnauthorizedRoutes/>
         }
-        <CommonRoutes/>
     </>
 )
 

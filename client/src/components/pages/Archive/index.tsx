@@ -25,9 +25,9 @@ export function Archive() {
       <Grid classes={["pt-4", "pb-5"]}>
         <h3 className="mb-5 mt-4">All courses</h3>
         <Course>
-          <Course.Item />
-          <Course.Item />
-          <Course.Item />
+          {/*<Course.Item />*/}
+          {/*<Course.Item />*/}
+          {/*<Course.Item />*/}
         </Course>
       </Grid>
     </>

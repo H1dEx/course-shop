@@ -13,10 +13,11 @@ const ContentWrapper = styled.div`
   box-sizing: border-box;
 `;
 
-function App() {
+export default function App() {
     const {login, logout, token, userId} = useAuth()
     const isAuth = !!token
     const routes = useRoutes(isAuth)
+
     return (
         <>
             <AuthContext.Provider value={{login, logout, userId, token, isAuth}}>
@@ -30,5 +31,3 @@ function App() {
         </>
     );
 }
-
-export default App;

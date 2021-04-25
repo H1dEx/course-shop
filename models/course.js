@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             Course.hasMany(models.Comment);
-            Course.hasMany(models.Category);
+            Course.belongsToMany(models.Category, {through: 'CategoryAssociation'});
             Course.belongsToMany(models.User, {through: 'Cart'})
         }
     }

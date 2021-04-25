@@ -19,19 +19,15 @@ const Wrapper = styled.div`
 export const Signin: React.FC = () => {
     const history = useHistory()
     const auth = useContext(AuthContext)
-    const {loading, error, request, clearError} = useHttp<any>();
+    const {loading, error, request, clearError} = useHttp();
     const [form, setForm] = useState({email: '', password: ''})
-    useEffect(() => {
-        if (error)
-            console.log(error)
-    }, [error]);
     const changeHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
         clearError()
         setForm({...form, [e.target.name]: e.target.value})
     }
     const registerHandler = async () => {
         try {
-            const data = await request('sign-in', 'POST', {...form});
+            const data = await request<any>('sign-in', 'POST', {...form});
             auth.login(data.token, data.userId)
             history.push('/')
         } catch (e) {

@@ -12,7 +12,8 @@ import {Link} from "react-router-dom"
 import {useHttp} from "../../../hooks/http.hook";
 import {Spinner} from "../../common/Spinner";
 import {LoadingWrapper} from "../Profile";
-import {ITag} from "../../../../types";
+import {ICourse, ITag} from "../../../../types";
+import {toast} from "react-toastify";
 
 const ButtonWrapper = styled.div`
   text-align: center;
@@ -23,28 +24,28 @@ const ButtonWrapper = styled.div`
   }
 `
 
-const categories = [
-    {name: "CSS", icon: "css.png"},
-    {name: "JavaScript", icon: "javascript.png"},
-    {name: "Vue", icon: "css.png"},
-    {name: "React", icon: "reactjs.jpg"},
-    {name: "Java", icon: "java.png"},
-    {name: "Python", icon: "python.png"},
-    {name: "TypeScript", icon: "typescript.png"},
-    {name: "Other", icon: "drugoe.png"},
-]
+// const categories = [
+//     {name: "CSS", icon: "css.png"},
+//     {name: "JavaScript", icon: "javascript.png"},
+//     {name: "Vue", icon: "css.png"},
+//     {name: "React", icon: "reactjs.jpg"},
+//     {name: "Java", icon: "java.png"},
+//     {name: "Python", icon: "python.png"},
+//     {name: "TypeScript", icon: "typescript.png"},
+//     {name: "Other", icon: "drugoe.png"},
+// ]
 
 export function Entire() {
     const [tags, setTags] = useState<ITag[]>([])
-    const [courses, setCourses] = useState<any>([])
-    const {loading, request} = useHttp<ITag[]>()
+    const [courses, setCourses] = useState<ICourse[]>([])
+    const {loading, request} = useHttp()
     useEffect(() => {
         const makeRequest = async () => {
-            const [courses, tags] = await Promise.all([request('/courses?page=1&count=10'), request('/categories?page=1&count=10')])
+            const [courses, tags] = await Promise.all([request<ICourse[]>('/courses?page=1&count=10'), request<ITag[]>('/categories?page=1&count=10')])
             setTags(tags);
             setCourses(courses);
         }
-        makeRequest()
+        makeRequest().catch(e => toast("An error has occurred", {type: "error"}))
     }, [])
     return loading
         ? <LoadingWrapper><Spinner/></LoadingWrapper>
@@ -93,7 +94,7 @@ export function Entire() {
                             margin: '0px auto'
                         }}>
                             {
-                                tags.map(tag => <MiniCard url={img} text={tag.tag} link="#"/>
+                                tags.map(tag => <MiniCard url={img} text={tag.tag} link="#" key={tag.id}/>
                                 )}
                         </div>
                         <ButtonWrapper className="pt-3">
@@ -109,11 +110,9 @@ export function Entire() {
                                 Recently added courses
                             </Subheader>
                             <Course>
-                                <Course.Item/>
-                                <Course.Item/>
-                                <Course.Item/>
-                                <Course.Item/>
-                                <Course.Item/>
+                                {courses.map(course => (
+                                    <Course.Item course={course} key={course.id}/>
+                                ))}
                             </Course>
                             <ButtonWrapper className="pt-3">
                                 <Link to='/archive'>

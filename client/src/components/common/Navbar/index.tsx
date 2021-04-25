@@ -33,28 +33,11 @@ export function Navbar() {
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item dropdown">
                             <Link
-                                className="nav-link dropdown-toggle"
+                                className="nav-link"
                                 to="/categories"
-                                id="navbarDropdown"
-                                role="button"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
                             >
                                 CATEGORIES
                             </Link>
-                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a className="dropdown-item" href="#">
-                                    Action
-                                </a>
-                                <a className="dropdown-item" href="#">
-                                    Another action
-                                </a>
-                                <div className="dropdown-divider"></div>
-                                <a className="dropdown-item" href="#">
-                                    Something else here
-                                </a>
-                            </div>
                         </li>
 
                         <li className="nav-item">

@@ -40,10 +40,10 @@ export const Profile = () => {
     const {token} = useContext(AuthContext)
     const [formData, setFormData] = useState({email: '', nickname: '', gender: ''});
     const [isLoading, setLoading] = useState(true);
-    const {loading, request} = useHttp<any>()
+    const {loading, request} = useHttp()
     useEffect(() => {
         const makeRequest = async () => {
-            const data = await request('/profile', 'GET', null, {authorization: token});
+            const data = await request<typeof formData>('/profile', 'GET', null, {authorization: token});
             setFormData(data)
             setLoading(loading)
         }
@@ -65,7 +65,7 @@ export const Profile = () => {
     const submitHandler = async (e: any) => {
         e.preventDefault()
         try {
-            const data = await request('/profile', 'POST', {...formData}, {authorization: token});
+            const data = await request<typeof formData>('/profile', 'POST', {...formData}, {authorization: token});
             setFormData(data)
             toast("Information has been successfully updated", {type: "success"})
         } catch (e) {
