@@ -20,7 +20,16 @@ module.exports = (sequelize, DataTypes) => {
         }
     )
 
-    Category.getAll = (page, limit) => {
+    Category.getAll = () => {
+        return Category.findAll()
+            .then(category => {
+                if (!category)
+                    throw new Error("Not found")
+                return category
+            })
+    }
+
+    Category.getPartial = (page, limit) => {
         return Category.findAll({limit, offset: (page - 1) * limit})
             .then(category => {
                 if (!category)

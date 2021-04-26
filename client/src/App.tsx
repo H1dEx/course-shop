@@ -9,9 +9,20 @@ import {AuthContext} from "./components/context/AuthContext"
 import {useRoutes} from "./routes"
 
 const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   box-sizing: border-box;
 `;
+
+const FooterWrapper = styled.div`
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: space-between;
+`
 
 export default function App() {
     const {login, logout, token, userId} = useAuth()
@@ -24,8 +35,10 @@ export default function App() {
                 <ContentWrapper>
                     <Navbar/>
                     <ToastContainer/>
-                    {routes}
-                    <Footer/>
+                    <FooterWrapper>
+                        {routes}
+                        <Footer/>
+                    </FooterWrapper>
                 </ContentWrapper>
             </AuthContext.Provider>
         </>

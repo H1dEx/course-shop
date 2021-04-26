@@ -19,7 +19,7 @@ export function Source() {
       <Grid classes={["pt-4", "pb-4"]}>
         <Row>
           <div className="col-lg-8 offset-lg-2 col-12">
-            <h1 className="text-center">Sources of courses</h1>
+            <h1 className="text-center mt-4">Sources of courses</h1>
             <p className="text-center mt-4">
               This is a list of all course sources (authors) on coursehunter.
               There are no words that can convey how much they love us!

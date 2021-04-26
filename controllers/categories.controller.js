@@ -1,10 +1,19 @@
 const {Category} = require('../models')
 
-function getAllCategories(req, res) {
-    const {page = 1, count} = req.query;
-    return Category.getAll(+page, +count)
-        .then(tags => res.json(tags))
+function getCategories(req, res) {
+    const {page, count} = req.query;
+    if (!page || !count) return getAllCategories(req, res)
+    return Promise.all([Category.getPartial(+page, +count), Category.count()])
+        .then(([tags, count]) => res.json({tags, count}))
         .catch(e => res.status(e.statusCode || 400).json({errors: [{msg: e.message}]}))
 }
 
-module.exports = {getAllCategories}
+function getAllCategories(req, res) {
+    return Promise.all([Category.getAll(), Category.count()])
+        .then(([tags, count]) => {
+            res.json({tags, count})
+        })
+        .catch(e => res.status(e.statusCode || 400).json({errors: [{msg: e.message}]}))
+}
+
+module.exports = {getCategories}

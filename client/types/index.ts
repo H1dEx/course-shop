@@ -13,3 +13,8 @@ export interface ICourse {
     updatedAt: string
     imagesource: string | null
 }
+
+export interface ICategoryPayload {
+    tags: ITag[]
+    count: number
+}
