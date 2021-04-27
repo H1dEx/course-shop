@@ -7,6 +7,7 @@ import styled from "styled-components";
 import {toast} from "react-toastify";
 import logo from "../../../assets/icons/css.png"
 import {EmptyText} from "../../common/EmptyText";
+import {Link} from "react-router-dom";
 
 const CardWrapper = styled.div`
   max-width: 1500px;
@@ -43,13 +44,11 @@ export const Categories = () => {
     const [tags, setTags] = useState<ITag[]>([])
     const [filter, setFilter] = useState('')
     const {request, loading} = useHttp()
-    const [count, setCount] = useState(0)
 
     useEffect(() => {
         const makeRequest = async () => {
-            const {tags, count} = await request<ICategoryPayload>('/categories');
+            const {tags} = await request<ICategoryPayload>('/categories');
             setTags(tags);
-            setCount(count);
         }
         makeRequest().catch(e => toast("An error has occurred", {type: "error"}))
     }, [])
@@ -59,10 +58,12 @@ export const Categories = () => {
             .filter(tag => tag.tag.toLowerCase().includes(filter.toLowerCase()));
         return (temp.length === 0) ? (<EmptyText>No items</EmptyText>) :
             temp.map(tag => (
-                <Card key={tag.id}>
-                    <Icon src={logo}/>
-                    <CardTitle>{tag.tag}</CardTitle>
-                </Card>
+                <Link to={`/archive/${tag.tag}`} key={tag.id}>
+                    <Card>
+                        <Icon src={logo}/>
+                        <CardTitle>{tag.tag}</CardTitle>
+                    </Card>
+                </Link>
             ))
     }, [tags, filter])
 
@@ -85,14 +86,6 @@ export const Categories = () => {
             </Grid>
             <Grid classes={["pb-5"]} fluid>
                 <CardWrapper>
-                    {tags
-                        .filter(tag => tag.tag.toLowerCase().includes(filter.toLowerCase()))
-                        .map(tag => (
-                            <Card key={tag.id}>
-                                <Icon src={logo}/>
-                                <CardTitle>{tag.tag}</CardTitle>
-                            </Card>
-                        )) || 'NO ITEMS'}
                     {filteredTags}
 
                 </CardWrapper>

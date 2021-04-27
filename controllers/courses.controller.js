@@ -1,14 +1,20 @@
 const {Course} = require('../models')
+const models = require('../models/index')
 
 function getAllCourses(req, res) {
     const {page = 1, count} = req.query;
-    return Course.getAll(+page, +count)
-        .then(courses => res.json(courses))
+    return Promise.all([Course.getAll(+page, +count), Course.count()])
+        .then(([courses, count]) => res.json({courses, count}))
         .catch(e => res.status(e.statusCode || 400).json({errors: [{msg: e.message}]}))
 }
 
 function getCoursesByTag(req, res) {
-    return Course.getCourseByTag(req.query.tag)
+    return models.Course.findAll({
+        include: [{
+            model: models.Category,
+            where: {tag: req.params.tag}
+        }]
+    })
         .then(courses => res.json(courses))
         .catch(e => res.status(e.statusCode || 400).json({errors: [{msg: e.message}]}))
 }

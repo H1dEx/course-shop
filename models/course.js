@@ -2,7 +2,6 @@
 const {
     Model
 } = require('sequelize')
-const {Category} = require('./category')
 
 module.exports = (sequelize, DataTypes) => {
     class Course extends Model {
@@ -38,15 +37,6 @@ module.exports = (sequelize, DataTypes) => {
             if (!courses)
                 throw new Error("Not found");
             return courses
-        })
-    }
-
-    Course.getCourseByTag = (tag) => {
-        return Course.findAll({
-            include: [{
-                model: Category,
-                where: {tag}
-            }]
         })
     }
 

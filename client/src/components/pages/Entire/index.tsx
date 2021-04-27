@@ -12,7 +12,7 @@ import {Link} from "react-router-dom"
 import {useHttp} from "../../../hooks/http.hook";
 import {Spinner} from "../../common/Spinner";
 import {LoadingWrapper} from "../Profile";
-import {ICategoryPayload, ICourse, ITag} from "../../../../types";
+import {ICategoryPayload, ICourse, ICoursePayload, ITag} from "../../../../types";
 import {toast} from "react-toastify";
 
 const ButtonWrapper = styled.div`
@@ -41,7 +41,7 @@ export function Entire() {
     const {loading, request} = useHttp();
     useEffect(() => {
         const makeRequest = async () => {
-            const [courses, {tags}] = await Promise.all([request<ICourse[]>('/courses?page=1&count=10'), request<ICategoryPayload>('/categories?page=1&count=10')])
+            const [{courses}, {tags}] = await Promise.all([request<ICoursePayload>('/courses?page=1&count=10'), request<ICategoryPayload>('/categories?page=1&count=10')])
             setTags(tags);
             setCourses(courses);
         }

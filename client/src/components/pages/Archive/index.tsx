@@ -1,43 +1,54 @@
-import React, {useCallback, useEffect, useMemo, useState} from 'react'
+import React, {useEffect, useMemo, useState} from 'react'
 import {BandComponent} from '../../common/BandComponent'
 import {Course} from '../../common/CourseItem'
 import {Grid, Row} from '../../common/Grid'
 import {Search} from '../../common/Search'
 import {useHttp} from "../../../hooks/http.hook";
-import {ICourse} from "../../../../types";
+import {ICourse, ICoursePayload} from "../../../../types";
 import {toast} from "react-toastify";
-import logo from "../../../assets/icons/css.png";
 import {EmptyText} from "../../common/EmptyText";
 import {useScrollLoad} from "../../../hooks/loadOnScroll.hook";
-
+import {useHistory, useLocation} from "react-router-dom";
 
 export function Archive() {
+    let {pathname} = useLocation();
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [countCourses, setCountCourses] = useState(0);
     const [filter, setFilter] = useState('');
     const [courses, setCourses] = useState<ICourse[]>([]);
     const {request, loading} = useHttp();
-    const [currentPage, setCurrentPage] = useState(1);
-    const makeRequest = useCallback(async () => {
-        const coursesPayload = await request<ICourse[]>(`/courses?page=${currentPage}&count=10`)
-        setCourses(coursesPayload)
+    useScrollLoad(() => {
         setCurrentPage((page) => page + 1)
-    }, [currentPage])
-
-    useScrollLoad(makeRequest)
+    })
 
     useEffect(() => {
+        const makeRequest = async () => {
+            if (loading || (countCourses && countCourses === courses.length)) return;
+
+            const path = pathname.split('/archive').length === 2 ? `${pathname.split('/archive')[1]}` : '';
+
+            const {
+                courses: gottenCourses,
+                count
+            } = await request<ICoursePayload>(`/courses${path}?page=${currentPage}&count=10`)
+
+            setCourses(courses => [...courses, ...gottenCourses])
+            setCountCourses(count)
+        }
         makeRequest().catch(e => toast("An error has occurred", {type: "error"}))
-    }, [])
+    }, [currentPage])
 
     const filteredCourses = useMemo(() => {
         const temp = courses
             .filter(course => course.coursename.toLowerCase().includes(filter.toLowerCase()));
         return (temp.length === 0) ? (<EmptyText>No items</EmptyText>) :
             temp.map(course => (
-                <Course.Item course={course}/>
+                <Course.Item course={course} key={course.id}/>
             ))
     }, [courses, filter])
 
-    console.log(courses)
+    console.log('RENDER')
     return (
         <>
             <BandComponent classes={["bg-dark"]}>

@@ -18,3 +18,8 @@ export interface ICategoryPayload {
     tags: ITag[]
     count: number
 }
+
+export interface ICoursePayload {
+    courses: ICourse[]
+    count: number
+}

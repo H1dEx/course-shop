@@ -1,10 +1,11 @@
 import React, {useEffect} from "react";
 
 
-export const useScrollLoad = (cb: () => {}) => {
+export const useScrollLoad = (cb: () => any) => {
     const eventHandler = (ev: Event): any => {
         if (document.scrollingElement
             && window.innerHeight + document.documentElement.scrollTop === document.scrollingElement.scrollHeight) {
+            // console.log(window.innerHeight + document.documentElement.scrollTop)
             cb();
         }
     }
