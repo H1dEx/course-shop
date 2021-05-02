@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
 import {Grid} from "../Grid";
@@ -7,6 +7,7 @@ import {GithubIcon} from "../Icons/GithubIcon";
 import {OdnoklassnikiIcon} from "../Icons/Odnoklassniki";
 import {TwitterIcon} from "../Icons/TwitterIcon";
 import {VkIcon} from "../Icons/VkIcon";
+import {useHttp} from "../../../hooks/http.hook";
 
 const Wrapper = styled.div`
   padding: 60px 0;
@@ -122,6 +123,15 @@ const LinkIcon = styled(Link)`
 `;
 
 export const Footer: React.FC = () => {
+    const {request} = useHttp();
+
+    useEffect(() => {
+        const makeRequest = async() => {
+
+        }
+
+        makeRequest()
+    })
     return (
         <Wrapper>
             <Grid>

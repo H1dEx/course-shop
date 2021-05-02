@@ -14,6 +14,7 @@ import {Spinner} from "../../common/Spinner";
 import {LoadingWrapper} from "../Profile";
 import {ICategoryPayload, ICourse, ICoursePayload, ITag} from "../../../../types";
 import {toast} from "react-toastify";
+import {EmptyText} from "../../common/EmptyText";
 
 const ButtonWrapper = styled.div`
   text-align: center;
@@ -23,17 +24,6 @@ const ButtonWrapper = styled.div`
     width: 270px;
   }
 `
-
-// const categories = [
-//     {name: "CSS", icon: "css.png"},
-//     {name: "JavaScript", icon: "javascript.png"},
-//     {name: "Vue", icon: "css.png"},
-//     {name: "React", icon: "reactjs.jpg"},
-//     {name: "Java", icon: "java.png"},
-//     {name: "Python", icon: "python.png"},
-//     {name: "TypeScript", icon: "typescript.png"},
-//     {name: "Other", icon: "drugoe.png"},
-// ]
 
 export function Entire() {
     const [tags, setTags] = useState<ITag[]>([]);
@@ -93,9 +83,11 @@ export function Entire() {
                             maxWidth: 1570,
                             margin: '0px auto'
                         }}>
-                            {
-                                tags.map(tag => <MiniCard url={img} text={tag.tag} link="#" key={tag.id}/>
-                                )}
+                            {tags.length > 0 ?
+                                tags.map(tag => <MiniCard url={img} text={tag.tag} link={`/archive/${tag.tag}`}
+                                                          key={tag.id}/>)
+                                : <EmptyText>No items</EmptyText>
+                            }
                         </div>
                         <ButtonWrapper className="pt-3">
                             <Link to="/categories"><Button>All categories</Button></Link>

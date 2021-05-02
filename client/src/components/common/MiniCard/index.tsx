@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
+import {Link} from "react-router-dom";
 
-const Wrapper = styled.a`
+const Wrapper = styled(Link)`
   box-sizing: border-box;
   width: 212px;
   height: 60px;
@@ -41,7 +42,7 @@ interface IProps {
 
 export const MiniCard: React.FC<IProps> = ({url, text, link}) => {
     return (
-        <Wrapper href={link}>
+        <Wrapper to={link}>
             <CardImage src={url} alt="card image"/>
             <CardDescr className="text-center">{text}</CardDescr>
         </Wrapper>

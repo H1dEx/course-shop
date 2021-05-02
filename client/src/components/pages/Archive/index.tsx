@@ -32,7 +32,7 @@ export function Archive() {
                 courses: gottenCourses,
                 count
             } = await request<ICoursePayload>(`/courses${path}?page=${currentPage}&count=10`)
-
+            console.log(path)
             setCourses(courses => [...courses, ...gottenCourses])
             setCountCourses(count)
         }

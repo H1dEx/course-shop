@@ -1,5 +1,4 @@
-const {Course} = require('../models')
-const models = require('../models/index')
+const {Course, Category} = require('../models')
 
 function getAllCourses(req, res) {
     const {page = 1, count} = req.query;
@@ -9,13 +8,17 @@ function getAllCourses(req, res) {
 }
 
 function getCoursesByTag(req, res) {
-    return models.Course.findAll({
+    const {page = 1, count} = req.query;
+    return Course.findAndCountAll({
+        limit: +count,
+        offset: +(page - 1) * count,
         include: [{
-            model: models.Category,
-            where: {tag: req.params.tag}
-        }]
+            model: Category,
+            where: {tag: req.params.tag},
+            attributes: []
+        }],
     })
-        .then(courses => res.json(courses))
+        .then(({rows, count}) => res.json({courses: rows, count}))
         .catch(e => res.status(e.statusCode || 400).json({errors: [{msg: e.message}]}))
 }
 
