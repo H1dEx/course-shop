@@ -87,7 +87,6 @@ export const Categories = () => {
             <Grid classes={["pb-5"]} fluid>
                 <CardWrapper>
                     {filteredTags}
-
                 </CardWrapper>
             </Grid>
         </>

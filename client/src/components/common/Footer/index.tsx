@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
 import {Grid} from "../Grid";
@@ -8,6 +8,7 @@ import {OdnoklassnikiIcon} from "../Icons/Odnoklassniki";
 import {TwitterIcon} from "../Icons/TwitterIcon";
 import {VkIcon} from "../Icons/VkIcon";
 import {useHttp} from "../../../hooks/http.hook";
+import {ICategoryPayload, ITag} from "../../../../types";
 
 const Wrapper = styled.div`
   padding: 60px 0;
@@ -124,12 +125,12 @@ const LinkIcon = styled(Link)`
 
 export const Footer: React.FC = () => {
     const {request} = useHttp();
-
+    const [tags, setTags] = useState<ITag[]>([])
     useEffect(() => {
         const makeRequest = async() => {
-
+            const {tags} = await request<ICategoryPayload>('/categories');
+            setTags(tags)
         }
-
         makeRequest()
     })
     return (
@@ -147,16 +148,15 @@ export const Footer: React.FC = () => {
                     <LinksWrapper>
                         <LinksColumn>
                             <LinksLabel>Categories</LinksLabel>
-                            <BoldLinksItem to="/">
+                            <BoldLinksItem to="/categories">
                                 All categories
                             </BoldLinksItem>
-                            <LinksItem to="/">React</LinksItem>
-                            <LinksItem to="/">Angular</LinksItem>
-                            <LinksItem to="/">Vue</LinksItem>
+                            {tags.map(({tag}, i)=> (i < 3) ? (
+                                <LinksItem to={`/archive/${tag}`}>{tag}</LinksItem>): null)}
                         </LinksColumn>
                         <LinksColumn>
                             <LinksLabel>Sourses</LinksLabel>
-                            <BoldLinksItem to="/">
+                            <BoldLinksItem to="/sourse">
                                 All sources
                             </BoldLinksItem>
                             <LinksItem to="/">Web4all</LinksItem>
