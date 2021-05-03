@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import png from '../../../assets/authors/no-logo.svg'
+import {ISource} from "../../../../types";
 
 const Wrapper = styled(Link)`
   color: #fff;
@@ -35,12 +36,16 @@ const DescrWrapper = styled.div`
 const CardTitle = styled.h5`
 `
 
-export function AutorCard() {
+interface IProps {
+    source: ISource
+}
+
+export const AuthorCard: React.FC<IProps> = ({source}) => {
   return (
-    <Wrapper to="#">
+    <Wrapper to={`/archive?source=${source.name}`} >
       <Image src={png} className="card-img-top" alt="logo" />
       <DescrWrapper>
-        <CardTitle>Nickname</CardTitle>
+        <CardTitle>{source.name}</CardTitle>
         <p className="card-text">Author</p>
       </DescrWrapper>
     </Wrapper>

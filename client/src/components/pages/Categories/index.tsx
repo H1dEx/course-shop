@@ -58,7 +58,7 @@ export const Categories = () => {
             .filter(tag => tag.tag.toLowerCase().includes(filter.toLowerCase()));
         return (temp.length === 0) ? (<EmptyText>No items</EmptyText>) :
             temp.map(tag => (
-                <Link to={`/archive/${tag.tag}`} key={tag.id}>
+                <Link to={`/archive?category=${tag.tag}`} key={tag.id}>
                     <Card>
                         <Icon src={logo}/>
                         <CardTitle>{tag.tag}</CardTitle>

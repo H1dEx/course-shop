@@ -24,3 +24,14 @@ export interface ICoursePayload {
     courses: ICourse[]
     count: number
 }
+
+export interface ISourcePayload {
+    sources: ISource[]
+    count: number
+}
+
+export interface ISource {
+    name: string
+    description: string
+    imagesource: null | string
+}

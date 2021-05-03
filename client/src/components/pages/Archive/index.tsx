@@ -11,8 +11,7 @@ import {useScrollLoad} from "../../../hooks/loadOnScroll.hook";
 import {useHistory, useLocation} from "react-router-dom";
 
 export function Archive() {
-    let {pathname} = useLocation();
-
+    let {search} = useLocation();
     const [currentPage, setCurrentPage] = useState(1);
     const [countCourses, setCountCourses] = useState(0);
     const [filter, setFilter] = useState('');
@@ -25,14 +24,14 @@ export function Archive() {
     useEffect(() => {
         const makeRequest = async () => {
             if (loading || (countCourses && countCourses === courses.length)) return;
-
-            const path = pathname.split('/archive').length === 2 ? `${pathname.split('/archive')[1]}` : '';
+            const link = search ?
+                `/courses${search}&page=${currentPage}&count=10` :
+                `/courses?page=${currentPage}&count=10`
 
             const {
                 courses: gottenCourses,
                 count
-            } = await request<ICoursePayload>(`/courses${path}?page=${currentPage}&count=10`)
-            console.log(path)
+            } = await request<ICoursePayload>(link)
             setCourses(courses => [...courses, ...gottenCourses])
             setCountCourses(count)
         }
@@ -44,7 +43,7 @@ export function Archive() {
             .filter(course => course.coursename.toLowerCase().includes(filter.toLowerCase()));
         return (temp.length === 0) ? (<EmptyText>No items</EmptyText>) :
             temp.map(course => (
-                <Course.Item course={course} key={course.id}/>
+                <Course.Item course={course} key={course.coursename}/>
             ))
     }, [courses, filter])
 

@@ -84,7 +84,7 @@ export function Entire() {
                             margin: '0px auto'
                         }}>
                             {tags.length > 0 ?
-                                tags.map(tag => <MiniCard url={img} text={tag.tag} link={`/archive/${tag.tag}`}
+                                tags.map(tag => <MiniCard url={img} text={tag.tag} link={`/archive?category=${tag.tag}`}
                                                           key={tag.id}/>)
                                 : <EmptyText>No items</EmptyText>
                             }

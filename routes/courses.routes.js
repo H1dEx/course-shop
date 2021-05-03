@@ -3,7 +3,6 @@ const CoursesController = require('../controllers/courses.controller')
 
 const router = Router()
 
-router.get('/', CoursesController.getAllCourses)
-router.get('/:tag', CoursesController.getCoursesByTag)
+router.get('/', CoursesController.getCourses)
 
 module.exports = router
