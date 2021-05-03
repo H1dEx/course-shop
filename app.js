@@ -6,6 +6,7 @@ const app = express()
 db.sequelize.sync()
     .then(console.log)
     .catch(console.log);
+
 app.use(express.static(__dirname+ '/static'));
 app.use(express.json({extended: true}))
 app.use('/api/auth', require('./routes/auth.routes'))

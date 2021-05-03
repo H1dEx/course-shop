@@ -200,22 +200,32 @@ module.exports = {
             {
                 name: 'Udemy',
                 description: 'By connecting students all over the world to the best instructors, Udemy is helping individuals reach their goals and pursue their dreams. Udemy is the leading global marketplace for teaching and learning, connecting millions of students to the skills they need to succeed. Udemy helps organizations of all kinds prepare for the ever-evolving future of work. Our curated collection of top-rated business and technical courses gives companies, governments, and nonprofits the power to develop in-house expertise and satisfy employees’ hunger for learning and development.',
+                createdAt: new Date(),
+                updatedAt: new Date(),
             },
             {
                 name: 'FrontendMasters',
                 description: 'FrontendMasters - One of the best places to learn Frontend. Video courses are taught by leading people in the industry.',
+                createdAt: new Date(),
+                updatedAt: new Date(),
             },
             {
                 name: 'SoftwareTesting',
                 description: 'The Software-Testing.RU project is dedicated to testing and improving the quality of software. On our portal, testers can find hundreds of thematic articles, a selection of books on testing, an overview of industry news. The Trainings section contains information about training courses, trainings, conferences and other testing events held in Russia and the CIS by various companies. ',
+                createdAt: new Date(),
+                updatedAt: new Date(),
             },
             {
                 name: 'ITVDN',
                 description: 'An educational online resource for IT professionals, created in 2014 in Ukraine. The goal of the project is to teach programming languages ​​and information technology to everyone who wants to become a professional in the field of software development, design of complex software systems, web development and related fields.',
+                createdAt: new Date(),
+                updatedAt: new Date(),
             },
             {
                 name: 'Bruno Simon',
                 description: 'At first, I wanted to make something original, entertaining, playable and understandable. As I’ve been using WebGL a lot last years and as a huge gamer, going for a game concept was an obvious choice. Since I was a kid, I’ve always liked playing with remote controlled cars and I’ve spent lots of time playing Micro Machine on Playstation. So as a result, I decided to build a universe where you could drive around with a remote car',
+                createdAt: new Date(),
+                updatedAt: new Date(),
             },
         ]
 
@@ -230,13 +240,17 @@ module.exports = {
             `SELECT id, name from Sources;`
         );
 
-        await queryInterface.bulkInsert('Courses', courses.map(({tags, source, ...rest}) => ({...rest, })));
+        await queryInterface.bulkInsert('Courses', courses.map(({tags, source, ...rest}) => {
+            const currentSource = sourcesRows.find(({name})=> name === source)
+            return {
+                ...rest,
+                SourceId: currentSource.id
+            }
+        }));
 
         const [coursesRows] = await queryInterface.sequelize.query(
             `SELECT id, coursename from Courses;`
         );
-
-
 
         return await Promise.all(
             courses.map(async ({tags, source, coursename}) => {

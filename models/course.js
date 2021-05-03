@@ -28,14 +28,5 @@ module.exports = (sequelize, DataTypes) => {
         modelName: 'Course',
     })
 
-    Course.getAll = (page, limit) => {
-        return Course.findAll({limit, offset: (page - 1) * limit})
-            .then(courses => {
-                if (!courses)
-                    throw new Error("Not found");
-                return courses
-            })
-    }
-
     return Course;
 }

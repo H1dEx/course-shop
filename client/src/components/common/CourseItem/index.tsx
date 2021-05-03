@@ -42,16 +42,23 @@ const TextWrapper = styled.div`
   padding: 20px;
   @media (max-width: 991px) {
     padding: 18px;
+    height: 260px;
   }
 `
 
 const Title = styled.h3`
+  display: block;
   font-size: 18px;
   font-weight: 600;
   text-transform: uppercase;
   margin-bottom: 5px;
+  overflow: hidden;
+  height: 20px;
   @media (max-width: 991px) {
     margin-bottom: 0;
+    font-size: 16px;
+    height: 40px;
+    white-space: normal;
   }
 `
 
@@ -67,8 +74,9 @@ const Description = styled.div`
   margin-bottom: 15px;
   height: 60px;
   overflow: hidden;
+  text-overflow: clip;
   @media (max-width: 991px) {
-    height: 133px;
+    height: 83px;
   }
 `
 
@@ -78,7 +86,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
   @media (max-width: 991px) {
     flex-direction: row;
     flex-wrap: wrap;
@@ -86,7 +93,6 @@ const Wrapper = styled.div`
     justify-content: center;
   }
 `
-
 
 export function Course({children}: { children: React.ReactNode }): React.ReactElement {
     return <Wrapper>{children}</Wrapper>
@@ -105,7 +111,7 @@ const CourseItem: React.FC<IProps> = ({classes, course}) => {
             </ImageWrapper>
             <TextWrapper>
                 <Title>{course.coursename}</Title>
-                <Author>Author's name</Author>
+                <Author>{course.Source.name}</Author>
                 <Description>
                     {course.description}
                     Самый современный ресурс JS онлайн! Изучите Javascript, создав красивое портфолио проектов Всегда

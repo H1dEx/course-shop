@@ -132,7 +132,7 @@ export const Footer: React.FC = () => {
             setTags(tags)
         }
         makeRequest()
-    })
+    }, [])
     return (
         <Wrapper>
             <Grid>

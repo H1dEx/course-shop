@@ -12,6 +12,7 @@ export interface ICourse {
     createdAt: string
     updatedAt: string
     imagesource: string | null
+    Source: {name: string}
 }
 
 export interface ICategoryPayload {
