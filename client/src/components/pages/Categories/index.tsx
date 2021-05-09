@@ -60,7 +60,7 @@ export const Categories = () => {
             temp.map(tag => (
                 <Link to={`/archive?category=${tag.tag}`} key={tag.id}>
                     <Card>
-                        <Icon src={logo}/>
+                        <Icon src={tag.image} loading='lazy'/>
                         <CardTitle>{tag.tag}</CardTitle>
                     </Card>
                 </Link>

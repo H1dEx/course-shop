@@ -3,6 +3,7 @@ export interface ITag {
     tag: string
     createdAt: string
     updatedAt: string
+    image: string
 }
 
 export interface ICourse {

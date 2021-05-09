@@ -8,7 +8,7 @@ import {OdnoklassnikiIcon} from "../Icons/Odnoklassniki";
 import {TwitterIcon} from "../Icons/TwitterIcon";
 import {VkIcon} from "../Icons/VkIcon";
 import {useHttp} from "../../../hooks/http.hook";
-import {ICategoryPayload, ITag} from "../../../../types";
+import {ICategoryPayload, ISource, ISourcePayload, ITag} from "../../../../types";
 
 const Wrapper = styled.div`
   padding: 60px 0;
@@ -124,12 +124,14 @@ const LinkIcon = styled(Link)`
 `;
 
 export const Footer: React.FC = () => {
-    const {request} = useHttp();
+    const {request} = useHttp()
     const [tags, setTags] = useState<ITag[]>([])
+    const [sources, setSources] = useState<ISource[]>([])
     useEffect(() => {
         const makeRequest = async() => {
-            const {tags} = await request<ICategoryPayload>('/categories');
+            const [{tags}, {sources}] = await Promise.all([request<ICategoryPayload>('/categories'), request<ISourcePayload>('/sources')]);
             setTags(tags)
+            setSources(sources)
         }
         makeRequest()
     }, [])
@@ -152,17 +154,15 @@ export const Footer: React.FC = () => {
                                 All categories
                             </BoldLinksItem>
                             {tags.map(({tag}, i)=> (i < 3) ? (
-                                <LinksItem to={`/archive/${tag}`}>{tag}</LinksItem>): null)}
+                                <LinksItem to={`/archive?category=${tag}`}>{tag}</LinksItem>): null)}
                         </LinksColumn>
                         <LinksColumn>
-                            <LinksLabel>Sourses</LinksLabel>
-                            <BoldLinksItem to="/sourse">
+                            <LinksLabel>Sources</LinksLabel>
+                            <BoldLinksItem to="/source">
                                 All sources
                             </BoldLinksItem>
-                            <LinksItem to="/">Web4all</LinksItem>
-                            <LinksItem to="/">FreeSchool</LinksItem>
-                            <LinksItem to="/">Another author</LinksItem>
-                            <LinksItem to="/">FreeBuff</LinksItem>
+                            {sources.map(({name}, i)=> (i < 3) ? (
+                            <LinksItem to={`/archive?source=${name}`}>{name}</LinksItem>) : null)}
                         </LinksColumn>
                     </LinksWrapper>
                     <SocialsWrapper>

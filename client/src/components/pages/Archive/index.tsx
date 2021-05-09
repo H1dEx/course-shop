@@ -8,7 +8,7 @@ import {ICourse, ICoursePayload} from "../../../../types";
 import {toast} from "react-toastify";
 import {EmptyText} from "../../common/EmptyText";
 import {useScrollLoad} from "../../../hooks/loadOnScroll.hook";
-import {useHistory, useLocation} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 
 export function Archive() {
     let {search} = useLocation();
@@ -18,23 +18,30 @@ export function Archive() {
     const [courses, setCourses] = useState<ICourse[]>([]);
     const {request, loading} = useHttp();
     useScrollLoad(() => {
-        setCurrentPage((page) => page + 1)
+        if (!(loading || (countCourses && countCourses <= courses.length))) {
+            console.log((loading || (countCourses && countCourses <= courses.length)));
+            setCurrentPage((page) => page + 1)
+        }
     })
+    const makeRequest = async () => {
+        const link = search ?
+            `/courses${search}&page=${currentPage}&count=10` :
+            `/courses?page=${currentPage}&count=10`
+
+        const {
+            courses: gottenCourses,
+            count
+        } = await request<ICoursePayload>(link)
+        setCourses(courses => [...courses, ...gottenCourses])
+        setCountCourses(count)
+    }
 
     useEffect(() => {
-        const makeRequest = async () => {
-            if (loading || (countCourses && countCourses === courses.length)) return;
-            const link = search ?
-                `/courses${search}&page=${currentPage}&count=10` :
-                `/courses?page=${currentPage}&count=10`
+        setCourses([]);
+        setCurrentPage(1);
+    }, [search])
 
-            const {
-                courses: gottenCourses,
-                count
-            } = await request<ICoursePayload>(link)
-            setCourses(courses => [...courses, ...gottenCourses])
-            setCountCourses(count)
-        }
+    useEffect(() => {
         makeRequest().catch(e => toast("An error has occurred", {type: "error"}))
     }, [currentPage])
 
@@ -47,7 +54,6 @@ export function Archive() {
             ))
     }, [courses, filter])
 
-    console.log('RENDER')
     return (
         <>
             <BandComponent classes={["bg-dark"]}>

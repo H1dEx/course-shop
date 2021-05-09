@@ -4,7 +4,7 @@ const db = require("./models")
 const app = express()
 
 db.sequelize.sync()
-    .then(console.log)
+    .then(()=>console.log('DB started'))
     .catch(console.log);
 
 app.use(express.static(__dirname+ '/static'));

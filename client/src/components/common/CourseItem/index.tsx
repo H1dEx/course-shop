@@ -30,8 +30,9 @@ const ImageWrapper = styled.div`
 `
 
 const Image = styled.img`
-  max-width: 360px;
-  max-height: 220px;
+  width: 360px;
+  height: 220px;
+  object-fit: fill;
   @media (max-width: 991px) {
     max-width: 268px;
     max-height: 164px;
